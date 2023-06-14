@@ -1,0 +1,32 @@
+:root{
+    --main-purple: #BB86FC;
+    --red: #E03232;
+    --main-dark: #272A37;
+    --inactive: #BDBDBB;
+    --div-color: #323644;
+    --pink: #FF005C;
+    --hard: #EA3636;
+    --moderate: #EAA236;
+    --easy: #36EA5D;
+    --secondary-grey: #414657;
+    --light-grey: #D9D9D9;
+    --orange: #FFA184;
+    --yellow: #FDFF84;
+    --level-bar: #FFE500;
+    --text-light: #FFFFFF;
+    --text-dark: #272A37;
+    --text-grey: #BDBDBD;
+}
+
+.div{
+    background: var(--div-color);
+    color: white;
+}
+
+.nav path{
+    fill:var(--inactive);
+}
+
+.nav.active path, .nav:active path, .nav:hover path{
+    fill: var(--main-purple);
+}
