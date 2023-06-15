@@ -15,8 +15,8 @@ const Home = ({navigation}) => {
          <CustomButton type="action" text="Challenge"/>
          <CustomButton
          text="Submit"
-         divStyle={{background:"#BB86FC",borderRadius:"10px", width:"fit-content", padding:".5rem"}}
-         textStyle={{color:"#FFFFFF", fontSize:"18px"}} 
+         divStyle={{background:"#BB86FC",borderRadius:10, padding:10}}
+         textStyle={{color:"#FFFFFF", fontSize:18}} 
          onPress={change}
          />
       </View>

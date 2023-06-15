@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, PixelRatio } from "react-native";
 import * as Font from 'expo-font';
 
 /*colors*/
@@ -19,15 +19,25 @@ const levelBar = "#FFE500";
 const textLight =  "#FFFFFF";
 const textDark = "#272A37";
 const textGrey = "#BDBDBD";
-const headerText = 'righteous';
-const normalText = 'alegraya sans reg';
+// const headerText = 'righteous';
+// const normalText = 'alegraya sans reg';
+
+const remToDp = (rem) => rem * PixelRatio.get();
 
 /**import font family */
-Font.loadAsync({
-    'righteous': require('../fonts/Righteous/Righteous-Regular.ttf'),
-    'alegraya sans reg':require('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf')
-})
+// Font.loadAsync({
+//     'righteous': require('../fonts/Righteous/Righteous-Regular.ttf'),
+//     'alegraya sans reg':require('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf')
+// })
 
+const loadFonts = async () => {
+    await Font.loadAsync({
+      'righteous': require('../fonts/Righteous/Righteous-Regular.ttf'),
+      'alegraya sans reg': require('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf')
+    });
+  };
+  
+loadFonts();
 
 const MainStyles = StyleSheet.create({
     headerDiv:{
@@ -35,16 +45,15 @@ const MainStyles = StyleSheet.create({
         justifyContent:'start',
         alignItems:'center',
         width:'100%',
-        height:'fit-content',
-        paddingVertical: '.5rem',
-        paddingHorizontal: '1rem',
+        paddingVertical: remToDp(0.5),
+        paddingHorizontal: remToDp(1),
         flexDirection: 'row'
     },
 
     header:{
-        fontFamily:headerText,
+        fontFamily:'righteous',
         color:'#FFFFFF',
-        fontSize:'18px',
+        fontSize:18,
         marginRight:'auto'
     },
 
@@ -61,7 +70,7 @@ const MainStyles = StyleSheet.create({
 
     containerPrimary:{
         backgroundColor: divColor,
-        borderRadius: "10px"
+        borderRadius: 10
     },
 
     btnPrimary: {
@@ -71,26 +80,26 @@ const MainStyles = StyleSheet.create({
     //default btn style
     btnDfText: {
         fontFamily: 'righteous',
-        fontSize: '18px',
+        fontSize: 18,
         color: "#FFFFFF"
     },
 
     btnDf: {
-        padding: ".5rem"
+        padding: remToDp(0.5)
     },
 
     //call to action btn style
     btnAction: {
         backgroundColor: pink,
-        borderRadius: "20px",
-        height: "55px",
-        width: "220px",
+        borderRadius: 20,
+        height: 55,
+        width: 220,
         alignItems:'center',
         justifyContent:'center'
     },
 
     btnActionText:{
-        fontSize: "30px",
+        fontSize: 30,
         color: textLight
     },
 

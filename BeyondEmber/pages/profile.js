@@ -12,8 +12,8 @@ const Profile = ({navigation}) => {
            <CustomButton type="action" text="Challenge"/>
            <CustomButton 
            text="Submit"
-           divStyle={{background:"#BB86FC",borderRadius:"10px", width:"fit-content", padding:".5rem"}}
-           textStyle={{color:"#FFFFFF", fontSize:"18px"}} 
+           divStyle={{background:"#BB86FC",borderRadius:10, width:"fit-content", padding:".5rem"}}
+           textStyle={{color:"#FFFFFF", fontSize:18}} 
            />
         </View>
       );

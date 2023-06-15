@@ -7,7 +7,7 @@ const Header = ({title}) => {
     return(
         <View style={MainStyles.headerDiv}>
             {(title==='BeyondEmber' || title==='Avatar')&&
-                <Svg width={37} height={40} style={{marginRight:"10px"}}>
+                <Svg width={37} height={40} style={{marginRight:10}}>
                     <Path d={logo} 
                     fill="#BB86FC"
                     fillRule="evenodd"
