@@ -41,18 +41,28 @@ const MainStyles = StyleSheet.create({
         backgroundColor: mainPurple
     },
 
+    //default btn style
+    btnDfText: {
+        fontFamily: 'righteous',
+        fontSize: '18px',
+        color: "#FFFFFF"
+    },
+
+    btnDf: {
+        padding: ".5rem"
+    },
+
+    //call to action btn style
     btnAction: {
         backgroundColor: pink,
         borderRadius: "20px",
         height: "55px",
         width: "220px",
         alignItems:'center',
-        justifyContent:'center',
-        display:'flex'
+        justifyContent:'center'
     },
 
     btnActionText:{
-        fontFamily: 'righteous',
         fontSize: "30px",
         color: textLight
     },
