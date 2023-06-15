@@ -19,6 +19,8 @@ const levelBar = "#FFE500";
 const textLight =  "#FFFFFF";
 const textDark = "#272A37";
 const textGrey = "#BDBDBD";
+const headerText = 'righteous';
+const normalText = 'alegraya sans reg';
 
 /**import font family */
 Font.loadAsync({
@@ -28,6 +30,31 @@ Font.loadAsync({
 
 
 const MainStyles = StyleSheet.create({
+    headerDiv:{
+        backgroundColor: mainDark,
+        justifyContent:'start',
+        alignItems:'center',
+        width:'100%',
+        height:'fit-content',
+        paddingVertical: '.5rem',
+        paddingHorizontal: '1rem',
+        flexDirection: 'row'
+    },
+
+    header:{
+        fontFamily:headerText,
+        color:'#FFFFFF',
+        fontSize:'18px',
+        marginRight:'auto'
+    },
+
+    container: {
+        width:"100%",
+        height:"100%",
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    
     bg: {
         backgroundColor: mainDark
     },
