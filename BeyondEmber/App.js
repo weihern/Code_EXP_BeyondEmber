@@ -1,6 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import MainStyles from './assets/stylesheets/main-style';
-import CustomButton from './components/button';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './pages/home';

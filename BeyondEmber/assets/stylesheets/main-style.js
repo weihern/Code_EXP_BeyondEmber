@@ -19,102 +19,185 @@ const levelBar = "#FFE500";
 const textLight =  "#FFFFFF";
 const textDark = "#272A37";
 const textGrey = "#BDBDBD";
-// const headerText = 'righteous';
-// const normalText = 'alegraya sans reg';
 
 const remToDp = (rem) => rem * PixelRatio.get();
-
-/**import font family */
-// Font.loadAsync({
-//     'righteous': require('../fonts/Righteous/Righteous-Regular.ttf'),
-//     'alegraya sans reg':require('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf')
-// })
 
 const loadFonts = async () => {
     await Font.loadAsync({
       'righteous': require('../fonts/Righteous/Righteous-Regular.ttf'),
       'alegraya sans reg': require('../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf')
     });
-  };
+};
   
 loadFonts();
 
-const MainStyles = StyleSheet.create({
-    headerDiv:{
-        backgroundColor: mainDark,
-        justifyContent:'start',
-        alignItems:'center',
-        width:'100%',
-        paddingVertical: remToDp(0.5),
-        paddingHorizontal: remToDp(1),
-        flexDirection: 'row'
-    },
-
-    header:{
-        fontFamily:'righteous',
-        color:'#FFFFFF',
-        fontSize:18,
-        marginRight:'auto'
-    },
-
-    container: {
-        width:"100%",
-        height:"100%",
-        justifyContent:'center',
-        alignItems:'center'
-    },
+const LoadStyles = async() => {
+    await loadFonts();
+    return StyleSheet.create({
+        headerDiv:{
+            backgroundColor: mainDark,
+            justifyContent:'start',
+            alignItems:'center',
+            width:'100%',
+            paddingVertical: remToDp(3),
+            paddingHorizontal: remToDp(5),
+            flexDirection: 'row'
+        },
     
-    bg: {
-        backgroundColor: mainDark
-    },
+        header:{
+            fontFamily:'righteous',
+            color:'#FFFFFF',
+            fontSize: 18,
+            marginRight:'auto'
+        },
+    
+        container: {
+            width:"100%",
+            height:"100%",
+            justifyContent:'center',
+            alignItems:'center',
+            display:'flex',
+            backgroundColor: mainDark
+        },
+        
+        bg: {
+            backgroundColor: mainDark
+        },
+    
+        containerPrimary:{
+            backgroundColor: divColor,
+            borderRadius: 10
+        },
+    
+        btnPrimary: {
+            backgroundColor: mainPurple,
+            borderRadius:10, 
+            padding:remToDp(2), 
+            width:'auto'
+        },
 
-    containerPrimary:{
-        backgroundColor: divColor,
-        borderRadius: 10
-    },
+        btnPrimaryText:{
+            color: "#FFFFFF",
+            fontSize: 18
+        },
+    
+        //default btn style
+        btnDfText: {
+            fontFamily: 'righteous',
+            fontSize: 18,
+            color: "#FFFFFF"
+        },
+    
+        btnDf: {
+            padding: remToDp(0.5)
+        },
+    
+        //call to action btn style
+        btnAction: {
+            backgroundColor: pink,
+            borderRadius: 20,
+            height: 55,
+            width: 220,
+            alignItems:'center',
+            justifyContent:'center'
+        },
+    
+        btnActionText:{
+            fontSize: 30,
+            color: textLight
+        },
+    
+        icon: {
+            fill: inactive
+        },
+    
+        iconActive: {
+            fill: mainPurple
+        },
+    
+        textPrimary :{
+            color: textLight,
+            fontFamily: 'alegraya sans reg'
+        }
+    });
+}
 
-    btnPrimary: {
-        backgroundColor: mainPurple
-    },
+// const MainStyles = StyleSheet.create({
+//     headerDiv:{
+//         backgroundColor: mainDark,
+//         justifyContent:'start',
+//         alignItems:'center',
+//         width:'100%',
+//         paddingVertical: remToDp(0.5),
+//         paddingHorizontal: remToDp(1),
+//         flexDirection: 'row'
+//     },
 
-    //default btn style
-    btnDfText: {
-        fontFamily: 'righteous',
-        fontSize: 18,
-        color: "#FFFFFF"
-    },
+//     header:{
+//         fontFamily:'righteous',
+//         color:'#FFFFFF',
+//         fontSize:18,
+//         marginRight:'auto'
+//     },
 
-    btnDf: {
-        padding: remToDp(0.5)
-    },
+//     container: {
+//         width:"100%",
+//         height:"100%",
+//         justifyContent:'center',
+//         alignItems:'center'
+//     },
+    
+//     bg: {
+//         backgroundColor: mainDark
+//     },
 
-    //call to action btn style
-    btnAction: {
-        backgroundColor: pink,
-        borderRadius: 20,
-        height: 55,
-        width: 220,
-        alignItems:'center',
-        justifyContent:'center'
-    },
+//     containerPrimary:{
+//         backgroundColor: divColor,
+//         borderRadius: 10
+//     },
 
-    btnActionText:{
-        fontSize: 30,
-        color: textLight
-    },
+//     btnPrimary: {
+//         backgroundColor: mainPurple
+//     },
 
-    icon: {
-        fill: inactive
-    },
+//     //default btn style
+//     btnDfText: {
+//         fontFamily: 'righteous',
+//         fontSize: 18,
+//         color: "#FFFFFF"
+//     },
 
-    iconActive: {
-        fill: mainPurple
-    },
+//     btnDf: {
+//         padding: remToDp(0.5)
+//     },
 
-    textPrimary :{
-        color: textLight,
-        fontFamily: 'alegraya sans reg'
-    }
-});
+//     //call to action btn style
+//     btnAction: {
+//         backgroundColor: pink,
+//         borderRadius: 20,
+//         height: 55,
+//         width: 220,
+//         alignItems:'center',
+//         justifyContent:'center'
+//     },
 
-export default MainStyles;
+//     btnActionText:{
+//         fontSize: 30,
+//         color: textLight
+//     },
+
+//     icon: {
+//         fill: inactive
+//     },
+
+//     iconActive: {
+//         fill: mainPurple
+//     },
+
+//     textPrimary :{
+//         color: textLight,
+//         fontFamily: 'alegraya sans reg'
+//     }
+// });
+
+export default LoadStyles;
