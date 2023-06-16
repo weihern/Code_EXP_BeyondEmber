@@ -4,13 +4,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Profile from "./pages/profile";
 import Challenge from "./pages/challenge.js";
 import Home from "./pages/home";
+import LoginScreen from './pages/login';
+
 import Header from "./components/header";
+import {auth} from './components/firebase'; 
 
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import LoadStyles from "./assets/stylesheets/main-style";
 import * as React from "react";
 import { logo, add } from "./assets/icons";
+
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -24,7 +28,6 @@ export default function App() {
         console.log("Error loading styles:", error);
       }
     };
-
     loadStyles();
   }, []);
   if (MainStyles === null) {
@@ -32,7 +35,12 @@ export default function App() {
     return null;
   }
 
-  console.log(MainStyles);
+  // const user = auth.currentUser;
+  // if (!user) {
+  //   // User is not logged in, render the login screen
+  //   return <LoginScreen />;
+  // }
+
   return (
     <NavigationContainer>
       <Tab.Navigator
