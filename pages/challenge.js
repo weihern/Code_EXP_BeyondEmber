@@ -54,6 +54,7 @@ function Challenge2({ route }) {
   // console.log(data); // Should display the passed data
 
   const [notes, setNotes] = useState([]);
+  
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "notes"), (snapshot) => {
       const documents = snapshot.docs.map((doc) => ({
@@ -74,9 +75,11 @@ function Challenge2({ route }) {
       </Button>
     </View>
   );
+
   const chosenCat = (data) => {
     navigation.navigate("Challenge2", { data }); // Pass the data object as a parameter
   };
+
   const handleEditNote = async (noteId) => {
     try {
       const noteRef = doc(db, "notes", noteId);

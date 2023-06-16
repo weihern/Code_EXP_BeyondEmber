@@ -1,7 +1,8 @@
 import LoadStyles from "../assets/stylesheets/main-style";
 import { View,Text } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import { logo, add } from "../assets/icons";
+// import { logo, add } from "../assets/icons";
+import { Icon } from "./icons";
 import * as React from 'react';
 
 const Header = ({title}) => {
@@ -22,24 +23,18 @@ const Header = ({title}) => {
        <View>
             <View style={{backgroundColor:"#272A37",height:44, width:"100%"}}></View>
             <View style={MainStyles.headerDiv}>
-                {(title==='BeyondEmber' || title==='Avatar')&&
-                    <Svg width={37} height={40} style={{marginRight:10}}>
-                        <Path d={logo} 
-                        fill="#BB86FC"
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        ></Path>
-                    </Svg>
+                {(title==='BeyondEmber' || title==='Avatar' || title ==='Profile')&&
+                    <Icon width={37} height={40} name="home" color="#BB86FC"/>
                 }
-
+                {(title==='Challenge') &&
+                    <Icon width={40} height={40} name="challenge" color="#BB86FC"/>
+                }
                 <Text style={MainStyles.header}>
                     {title}
                 </Text>
                 {
                     (title==='Challenge') && 
-                    <Svg width={30} height={30}>
-                        <Path d={add} fill="#FFFFFF"></Path>
-                    </Svg>
+                    <Icon width={30} height={30} name="add" color="#FFFFFF"/>
                 }
             </View>
         </View>

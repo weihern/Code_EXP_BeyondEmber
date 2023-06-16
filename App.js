@@ -11,30 +11,16 @@ import {auth} from './components/firebase';
 
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import LoadStyles from "./assets/stylesheets/main-style";
 import * as React from "react";
-import { logo, add } from "./assets/icons";
+
+import {Icon} from "./components/icons";
+import { PixelRatio } from "react-native";
 
 
 export default function App() {
   const Tab = createBottomTabNavigator();
-  const [MainStyles, setStyles] = React.useState(null);
-  React.useEffect(() => {
-    const loadStyles = async () => {
-      try {
-        const loadedStyles = await LoadStyles();
-        setStyles(loadedStyles);
-      } catch (error) {
-        console.log("Error loading styles:", error);
-      }
-    };
-    loadStyles();
-  }, []);
-  if (MainStyles === null) {
-    // Render a loading state or placeholder UI until styles are loaded
-    return null;
-  }
 
+  const remToDp = (rem) => rem * PixelRatio.get();
   // const user = auth.currentUser;
   // if (!user) {
   //   // User is not logged in, render the login screen
@@ -46,42 +32,36 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+            return <Icon 
+            width={25} height={25} color={color} name={route.name}/>
 
-            //Set the icon based on which route it is (name of the tab)
-            if (route.name === "HomeStack") {
-              iconName = "home";
-            } else if (route.name === "ChallengeStack") {
-              iconName = "apple";
-            } else if (route.name === "Profile") {
-              iconName = focused ? "user" : "user-o";
-            }
-            // You can return any component that you like here!
-            return <FontAwesome name={iconName} size={size} color={color} />;
-            // Alternatively, if you dont want to use expo icon images, u can use download image via source path
-            // return <Image source={iconImageSource} style={{ width: size, height: size, tintColor: color }} />;
           },
-          tabBarActiveTintColor: "white",
-          tabBarInactiveTintColor: "gray",
+          tabBarActiveTintColor: "#BB86FC",
+          tabBarInactiveTintColor: "#BDBDBD",
           tabBarStyle: {
             backgroundColor: "#272A37", // Set the background color of the tab bar
+            borderTopWidth: 0.5,
+            borderTopColor: "#414657",
+            paddingBottom: remToDp(1) + 15,
+            paddingTop: remToDp(1),
+            paddingHorizontal: 5,
           },
         })}
       >
         <Tab.Screen
-          name="HomeStack"
+          name="Home"
           options={{
             header: () => <Header title="BeyondEmber"/>,
             // The style below is not applying 
           }}
-          component={HomeStack}
+          component={Home}
         />
         <Tab.Screen
           options={{
             header: () => <Header title="BeyondEmber"/>,
             
           }}
-          name="ChallengeStack"
+          name="Challenge"
           component={ChallengeStack}
         />
         <Tab.Screen
@@ -94,26 +74,4 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-  // return (
-  //   <View style={[styles.container, MainStyles.bg]}>
-  //     <Text style={MainStyles.textPrimary}>Open up App.js to start working on your app!</Text>
-  //     {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
-  //      */}
-  //      <CustomButton type="action" text="Challenge"/>
-  //      <CustomButton
-  //      text="Submit"
-  //      divStyle={{background:"#BB86FC",borderRadius:"10px", width:"fit-content", padding:".5rem"}}
-  //      textStyle={{color:"#FFFFFF", fontSize:"18px"}}
-  //      />
-  //     <StatusBar style="auto" />
-  //   </View>
-  // );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

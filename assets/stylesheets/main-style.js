@@ -5,7 +5,7 @@ import * as Font from 'expo-font';
 const mainPurple = "#BB86FC";
 const red = "#E03232";
 const mainDark = "#272A37";
-const inactive = "#BDBDBB";
+const inactive = "#BDBDBD";
 const divColor = "#323644";
 const pink = "#FF005C";
 const hard = "#EA3636";
