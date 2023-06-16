@@ -1,40 +1,89 @@
-import { StatusBar } from 'expo-status-bar';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './pages/home';
-import Profile from './pages/profile';
-import Header from './components/header';
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Profile from "./pages/profile";
+import Challenge from "./pages/challenge.js";
+import Home from "./pages/home";
+import Header from "./components/header";
+
+import { FontAwesome } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import LoadStyles from "./assets/stylesheets/main-style";
+import * as React from "react";
+import { logo, add } from "./assets/icons";
 
 export default function App() {
+  const Tab = createBottomTabNavigator();
+  const [MainStyles, setStyles] = React.useState(null);
+  React.useEffect(() => {
+    const loadStyles = async () => {
+      try {
+        const loadedStyles = await LoadStyles();
+        setStyles(loadedStyles);
+      } catch (error) {
+        console.log("Error loading styles:", error);
+      }
+    };
 
-  const Stack = createNativeStackNavigator();
+    loadStyles();
+  }, []);
+  if (MainStyles === null) {
+    // Render a loading state or placeholder UI until styles are loaded
+    return null;
+  }
 
-  return(
+  console.log(MainStyles);
+  return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            //Set the icon based on which route it is (name of the tab)
+            if (route.name === "Home") {
+              iconName = "home";
+            } else if (route.name === "Challenge") {
+              iconName = "apple";
+            } else if (route.name === "Profile") {
+              iconName = focused ? "user" : "user-o";
+            }
+            // You can return any component that you like here!
+            return <FontAwesome name={iconName} size={size} color={color} />;
+            // Alternatively, if you dont want to use expo icon images, u can use download image via source path
+            // return <Image source={iconImageSource} style={{ width: size, height: size, tintColor: color }} />;
+          },
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "gray",
+          tabBarStyle: {
+            backgroundColor: "#272A37", // Set the background color of the tab bar
+          },
+        })}
+      >
+        <Tab.Screen
           name="Home"
-          component={Home}
           options={{
             header: () => <Header title="BeyondEmber"/>,
-            headerStyle: {
-              borderBottomWidth: 0, // Set the border width to 0
-            },
-            headerShadowVisible: false,
+            // The style below is not applying 
           }}
+          component={Home}
         />
-        <Stack.Screen 
-        name="Profile" 
-        component={Profile} 
-        options={{
-          header: () => <Header title="Avatar"/>,
-          headerStyle: {
-            borderBottomWidth: 0, // Set the border width to 0
-          },
-          headerShadowVisible: false,
-        }}
+        <Tab.Screen
+          options={{
+            header: () => <Header title="BeyondEmber"/>,
+            
+          }}
+          name="Challenge"
+          component={Challenge}
         />
-      </Stack.Navigator>
+        <Tab.Screen
+          options={{
+            header: () => <Header title="BeyondEmber"/>,
+          }}
+          name="Profile"
+          component={Profile}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
   // return (
@@ -43,10 +92,10 @@ export default function App() {
   //     {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
   //      */}
   //      <CustomButton type="action" text="Challenge"/>
-  //      <CustomButton 
+  //      <CustomButton
   //      text="Submit"
   //      divStyle={{background:"#BB86FC",borderRadius:"10px", width:"fit-content", padding:".5rem"}}
-  //      textStyle={{color:"#FFFFFF", fontSize:"18px"}} 
+  //      textStyle={{color:"#FFFFFF", fontSize:"18px"}}
   //      />
   //     <StatusBar style="auto" />
   //   </View>
