@@ -31,9 +31,9 @@ function Challenge({ navigation }) {
   const rowRenderer = ({ item }) => (
     <View style={{ padding: 10, backgroundColor: "lightblue", margin: 2 }}>
       <Text>{item.cat}</Text>
-      <Button mode="contained" onPress={() => chosenCat(item.cat)}>
+      {/* <Button mode="contained" onPress={() => chosenCat(item.cat)}>
         Edit Note
-      </Button>
+      </Button> */}
     </View>
   );
   const chosenCat = (data) => {
@@ -54,7 +54,7 @@ function Challenge2({ route }) {
   // console.log(data); // Should display the passed data
 
   const [notes, setNotes] = useState([]);
-  
+
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "notes"), (snapshot) => {
       const documents = snapshot.docs.map((doc) => ({
@@ -70,9 +70,9 @@ function Challenge2({ route }) {
   const rowRenderer = ({ item }) => (
     <View style={{ padding: 10, backgroundColor: "lightblue", margin: 2 }}>
       <Text>{item.title}</Text>
-      <Button mode="contained" onPress={() => handleEditNote(item.id)}>
+      {/* <Button mode="contained" onPress={() => handleEditNote(item.id)}>
         Edit Note
-      </Button>
+      </Button> */}
     </View>
   );
 
@@ -109,7 +109,7 @@ const Stack = createNativeStackNavigator();
 export default function ChallengeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Challenge" component={Challenge} />
+      <Stack.Screen name="Challenge1" component={Challenge} />
       <Stack.Screen name="Challenge2" component={Challenge2} />
       {/* <Stack.Screen name="Challenge3" component={Challenge3} /> */}
     </Stack.Navigator>

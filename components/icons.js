@@ -1,6 +1,10 @@
 import Svg, {Path} from 'react-native-svg';
 
 export const Icon = ({width, height, color, name}) =>{
+    width = width? width:20;
+    height = height? height:20;
+    color = color?color:"#BDBDBD";
+
     if(name.toLowerCase()==="home" || name.toLowerCase()==="beyondember"){
         return (<Svg
             xmlns="http://www.w3.org/2000/svg"

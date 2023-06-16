@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Profile from "./pages/profile";
 import ChallengeStack from "./pages/challenge.js";
-import HomeStack from "./pages/home";
+import Home from "./pages/home";
 
 
 import Header from "./components/header";
@@ -58,7 +58,7 @@ export default function App() {
         />
         <Tab.Screen
           options={{
-            header: () => <Header title="BeyondEmber"/>,
+            header: () => <Header title="Challenge"/>,
             
           }}
           name="Challenge"
@@ -66,7 +66,7 @@ export default function App() {
         />
         <Tab.Screen
           options={{
-            header: () => <Header title="BeyondEmber"/>,
+            header: () => <Header title="Profile"/>,
           }}
           name="Profile"
           component={Profile}
