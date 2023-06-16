@@ -2,9 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Profile from "./pages/profile";
-import Challenge from "./pages/challenge.js";
-import Home from "./pages/home";
-import LoginScreen from './pages/login';
+import ChallengeStack from "./pages/challenge.js";
+import HomeStack from "./pages/home";
+
 
 import Header from "./components/header";
 import {auth} from './components/firebase'; 
@@ -49,9 +49,9 @@ export default function App() {
             let iconName;
 
             //Set the icon based on which route it is (name of the tab)
-            if (route.name === "Home") {
+            if (route.name === "HomeStack") {
               iconName = "home";
-            } else if (route.name === "Challenge") {
+            } else if (route.name === "ChallengeStack") {
               iconName = "apple";
             } else if (route.name === "Profile") {
               iconName = focused ? "user" : "user-o";
@@ -69,20 +69,20 @@ export default function App() {
         })}
       >
         <Tab.Screen
-          name="Home"
+          name="HomeStack"
           options={{
             header: () => <Header title="BeyondEmber"/>,
             // The style below is not applying 
           }}
-          component={Home}
+          component={HomeStack}
         />
         <Tab.Screen
           options={{
             header: () => <Header title="BeyondEmber"/>,
             
           }}
-          name="Challenge"
-          component={Challenge}
+          name="ChallengeStack"
+          component={ChallengeStack}
         />
         <Tab.Screen
           options={{

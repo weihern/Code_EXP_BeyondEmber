@@ -3,8 +3,9 @@ import { View, TextInput, Button, StyleSheet } from "react-native";
 import firebase from "../components/firebase";
 import { getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../components/firebase"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = () => {
@@ -12,6 +13,7 @@ const LoginScreen = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        // navigation.navigate('Home', { user });
         // ...
       })
       .catch((error) => {
@@ -19,7 +21,6 @@ const LoginScreen = () => {
         const errorMessage = error.message;
       });
   };
-
   return (
     <View style={styles.container}>
       <TextInput
