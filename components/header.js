@@ -1,6 +1,6 @@
 import LoadStyles from "../assets/stylesheets/main-style";
 import { View,Text } from "react-native";
-import Svg, { Path } from "react-native-svg";
+// import Svg, { Path } from "react-native-svg";
 // import { logo, add } from "../assets/icons";
 import { Icon } from "./icons";
 import * as React from 'react';

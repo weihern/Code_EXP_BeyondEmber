@@ -1,9 +1,11 @@
 import LoadStyles from "../assets/stylesheets/main-style";
 import CustomButton from "../components/button";
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
+import ChallengeStack1 from "./junwei";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Home = ({navigation}) => {
+const HomeMain = ({navigation}) => {
     const [MainStyles, setStyles] = React.useState(null);
 
     React.useEffect(() => {
@@ -15,27 +17,52 @@ const Home = ({navigation}) => {
         loadStyles();
     }, []);
 
-    function change(){
+    function change(id){
         console.log("change page");
         navigation.navigate('Profile');
+        if(id==="jw"){
+          navigation.navigate('ChallengeStack1');
+        }else if(id==="wh"){
+          //weihern put the name of navigator screen here
+          navigation.navigate('ChallengeStack1');
+        }else if(id==="b"){
+          //brian put the name of navigator screen here
+          navigation.navigate('ChallengeStack1');
+        }
     }
 
     return (
         <>
      {  MainStyles && <View style={[MainStyles.bg,MainStyles.container]}>
-            <Text style={MainStyles.textPrimary}>Open up App.js to start working on your app!</Text>
+            {/* <Text style={MainStyles.textPrimary}>Open up App.js to start working on your app!</Text> */}
             {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
             */}
-            <CustomButton type="action" text="Challenge"/>
+            {/* <CustomButton type="action" text="Challenge"/>
             <CustomButton
             text="Submit"
             divStyle={MainStyles.btnPrimary}
             textStyle={MainStyles.btnPrimaryText} 
             onPress={change}
-            />
+            /> */}
+            <Button title="Jun Wei" onPress={(e)=>{change("jw")}}/>
+            <Button title="Wei Hern" onPress={(e)=>{change("wh")}}/>
+            <Button title="Brian" onPress={(e)=>{change("b")}}/>
+            <Button title="Hui Ru" onPress={(e)=>{change("hr")}}/>
         </View>}
       </>
     );
 }
 
-export default Home;
+const Stack = createNativeStackNavigator();
+export default function Home() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomeMain" component={HomeMain} />
+      <Stack.Screen name="ChallengeStack1" component={ChallengeStack1} />
+      {/* <Stack.Screen name="Challenge7" component={Challenge3} /> */}
+      {/* Wei Hern & Brian to add your Page's component! then change the navigation in change function (line 25-31)*/}
+    </Stack.Navigator>
+  );
+}
+
+// export default Home;
