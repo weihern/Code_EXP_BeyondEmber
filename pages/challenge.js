@@ -30,10 +30,10 @@ function Challenge({ navigation }) {
 
   const rowRenderer = ({ item }) => (
     <View style={{ padding: 10, backgroundColor: "lightblue", margin: 2 }}>
-      <Text>{item.cat}</Text>
-      {/* <Button mode="contained" onPress={() => chosenCat(item.cat)}>
+      {/* <Text>{item.cat}</Text> */}
+      <Button mode="contained" title={item.cat} onPress={() => chosenCat(item.cat)}>
         Edit Note
-      </Button> */}
+      </Button>
     </View>
   );
   const chosenCat = (data) => {
@@ -56,7 +56,7 @@ function Challenge2({ route }) {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "notes"), (snapshot) => {
+    const unsubscribe = onSnapshot(collection(db, "challenges"), (snapshot) => {
       const documents = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
