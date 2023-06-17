@@ -9,11 +9,12 @@ const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = () => {
+    // navigation.navigate('Home', { user });
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // navigation.navigate('Home', { user });
+        navigation.navigate('HomeTabs', { user });
         // ...
       })
       .catch((error) => {

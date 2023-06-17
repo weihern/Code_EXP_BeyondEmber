@@ -59,6 +59,27 @@ const LoadStyles = async() => {
             display:'flex',
             backgroundColor: mainDark
         },
+
+        // shadowDiv:{
+        //     ...Platform.select({
+        //         ios: {
+        //           shadowColor: 'black',
+        //           shadowOpacity: 0.5,
+        //           shadowOffset: { width: 0, height: 2 },
+        //           shadowRadius: 4,
+        //         },
+        //         android: {
+        //           elevation: 4,
+        //         },
+        //       }),
+        // },
+        shadowDiv:{
+            shadowColor: 'black',
+            shadowOpacity: 0.5,
+            shadowOffset: { width: 0, height: 2 },
+            shadowRadius: 4,
+            elevation: 4
+        },
         
         bg: {
             backgroundColor: mainDark

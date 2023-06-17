@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import { createStackNavigator } from '@react-navigation/stack';
 import Profile from "./pages/profile";
-import ChallengeStack from "./pages/challenge.js";
+// import ChallengeStack from "./pages/challenge.js";
 import Home from "./pages/home";
 
 
@@ -15,10 +16,13 @@ import * as React from "react";
 
 import {Icon} from "./components/icons";
 import { PixelRatio } from "react-native";
+import {Challenge, Challenge2, Challenge3} from './pages/challenge';
+import LoginScreen from './pages/login';
 
 
 export default function App() {
-  const Tab = createBottomTabNavigator();
+  // const Tab = createBottomTabNavigator();
+  const Stack = createNativeStackNavigator();
 
   const remToDp = (rem) => rem * PixelRatio.get();
   // const user = auth.currentUser;
@@ -29,6 +33,27 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="login" component={LoginScreen}/>
+        <Stack.Screen name="HomeTabs" component={TabsNav} />
+        <Stack.Screen name="Challenge2" component={Challenge2} />
+        <Stack.Screen name="Challenge3" component={Challenge3} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export function TabsNav(){
+  const Tab = createBottomTabNavigator();
+
+  const remToDp = (rem) => rem * PixelRatio.get();
+  // const user = auth.currentUser;
+  // if (!user) {
+  //   // User is not logged in, render the login screen
+  //   return <LoginScreen />;
+  // }
+
+  return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -51,27 +76,25 @@ export default function App() {
         <Tab.Screen
           name="Home"
           options={{
-            header: () => <Header title="BeyondEmber"/>,
+            header: () => <Header title="BeyondEmber"/>
             // The style below is not applying 
           }}
           component={Home}
         />
         <Tab.Screen
           options={{
-            header: () => <Header title="Challenge"/>,
-            
+            header: () => <Header title="Challenge"/>
           }}
           name="Challenge"
-          component={ChallengeStack}
+          component={Challenge}
         />
         <Tab.Screen
           options={{
-            header: () => <Header title="Profile"/>,
+            header: () => <Header title="Profile"/>
           }}
           name="Profile"
           component={Profile}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
