@@ -66,7 +66,38 @@ const LoadStyles = async() => {
     
         containerPrimary:{
             backgroundColor: divColor,
-            borderRadius: 10
+            borderRadius: 10,
+            width: "100%",
+            display: 'flex',
+            flexDirection: 'column',
+            marginVertical: 5
+        },
+
+        rowDiv:{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            paddingHorizontal: remToDp(3),
+            paddingVertical: remToDp(3)
+        },
+
+        colDiv:{
+            display: 'flex',
+            flexDirection:'column',
+            width:'100%',
+            padding: 5
+        },
+
+        hardDiv:{
+            backgroundColor: hard
+        },
+
+        moderateDiv:{
+            backgroundColor: moderate
+        },
+
+        easyDiv:{
+            backgroundColor: easy
         },
     
         btnPrimary: {
@@ -118,6 +149,12 @@ const LoadStyles = async() => {
         textPrimary :{
             color: textLight,
             fontFamily: 'alegraya sans reg'
+        },
+
+        textHeader: {
+            color: textLight,
+            fontFamily: 'righteous',
+            fontSize: 24
         }
     });
 }
