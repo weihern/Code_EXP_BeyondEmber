@@ -2,14 +2,25 @@ import LoadStyles from "../assets/stylesheets/main-style";
 import CustomButton from "../components/button";
 import { StyleSheet, Text, View, PixelRatio } from 'react-native';
 import * as React from 'react';
+import { useEffect, useState } from "react";
 // import 
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  where
+} from "firebase/firestore";
+import { db } from "../components/firebase";
+
+import rewardAsObjects from "../data/rewards.js";
 
 const Profile = ({navigation}) => {
     const remToDp = (rem) => rem * PixelRatio.get();
 
-    const [MainStyles, setStyles] = React.useState(null);
+    const [MainStyles, setStyles] = useState(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const loadStyles = async () => {
           const loadedStyles = await LoadStyles();
           setStyles(loadedStyles);
@@ -18,6 +29,26 @@ const Profile = ({navigation}) => {
         loadStyles();
     }, []);
 
+    const [profile, setProfile] = useState([]);
+    // get user email from token
+    const email = "test@hotmail.com"
+    useEffect(() => {
+      const unsubscribe = onSnapshot(
+        query(collection(db, "users"), where("__name__", "==", email)),
+      (snapshot) => {
+        const documents = snapshot.docs.reduce((acc, doc) => {
+          acc = {
+            ...doc.data(),
+          };
+          return acc;
+        }, {});
+        // console.log(documents);
+        setProfile(documents);
+      });
+      return () => unsubscribe();
+    }, []);
+    console.log(profile)
+    console.log(rewardAsObjects())
     return (
         <>
         {MainStyles && 
