@@ -1,30 +1,63 @@
-import LoadStyles from "../assets/stylesheets/main-style";
-import CustomButton from "../components/button";
-import { StyleSheet, Text, View, PixelRatio, Image } from "react-native";
-import * as React from "react";
-import { useEffect, useState } from "react";
-// import
+import React, { useEffect, useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from "react-native";
 import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../components/firebase";
+import LoadStyles from "../assets/stylesheets/main-style";
 import * as Progress from "react-native-progress";
 import { Dimensions } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import ProfileStatsCard from "../components/ProfileStatsCard";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
-const deviceWidth = Dimensions.get("window").width;
-const barWidth = deviceWidth * 0.7;
+import RewardsCards from "../components/RewardsCards";
+
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-const Profile = ({ navigation }) => {
-  const remToDp = (rem) => rem * PixelRatio.get();
 
+const data_rewards = [
+  {
+    id: 1,
+    text1: "$10 NTUC Voucher",
+    text2: "Redeem",
+    image: "fairprice",
+  },
+  {
+    id: 2,
+    text1: "$15 gojek voucher",
+    text2: "Unlock at level 10",
+    image: "gojek",
+  },
+  {
+    id: 3,
+    text1: "$10 grab voucher",
+    text2: "Unlock at level 20",
+    image: "grabfood",
+  },
+  {
+    id: 4,
+    text1: "Tangs voucher",
+    text2: "Unlock at level 30",
+    image: "tangs",
+  },
+  {
+    id: 5,
+    text1: "$5 uniqlo voucher",
+    text2: "Unlock at level 40",
+    image: "uniqlo",
+  },
+  {
+    id: 6,
+    text1: "starbucks vouchers",
+    text2: "Unlock at level 50",
+    image: "starbucks",
+  },
+  // Add more items as needed
+];
+
+const Profile = ({ navigation }) => {
   const [MainStyles, setStyles] = useState(null);
 
   useEffect(() => {
@@ -49,97 +82,38 @@ const Profile = ({ navigation }) => {
           };
           return acc;
         }, {});
-        // console.log(documents);
         setProfile(documents);
       }
     );
     return () => unsubscribe();
   }, []);
-  console.log(profile);
-  const rewards = ["grab", "ntuc", "capitalLand", "gojek"];
-  console.log(rewards);
-  const data = {
-    labels: ["Innovation", "Teamwork", "Leadership", "Professional"],
-    datasets: [
-      {
-        data: [
-          profile.stats?.innovative,
-          profile.stats?.leadership,
-          profile.stats?.professional,
-          profile.stats?.teamwork,
-        ],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2, // optional
-      },
-    ],
-    // legend: ["Rainy Days"], // optional
-  };
-  const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false, // optional
-  };
-
   return (
     <>
       {MainStyles && (
         <View style={[MainStyles.bg, MainStyles.container]}>
-          <Text style={MainStyles.textHeader}>{profile.name}</Text>
-          {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
-           */}
-          <View style={{ flexDirection: "row" }}>
-            <Image
-              source={require("../assets/images/epic_avatar.png")}
-              style={{ width: 200, height: 300 }}
-              resizeMode="contain"
-            />
-            <View
-              style={{
-                justifyContent: "flex-end",
-                alignItems: "center",
-                marginBottom: 10,
-              }}
-            >
-              <View style={styles.iconsContainer}>
-                <Icon
-                  name="facebook"
-                  size={30}
-                  color="#3b5998"
-                  style={styles.icon}
-                />
-                <Icon
-                  name="linkedin-square"
-                  size={30}
-                  color="#0077b5"
-                  style={styles.icon}
-                />
-                <Icon
-                  name="twitter"
-                  size={30}
-                  color="#1da1f2"
-                  style={styles.icon}
-                />
-              </View>
-              {/* <LineChart
-                data={data}
-                width={windowWidth / 3}
-                height={100}
-                chartConfig={chartConfig}
-              /> */}
-            </View>
-          </View>
+          {/* Top Row */}
           <Text style={[MainStyles.textHeader, { fontSize: 20 }]}>
+            {profile.name}
+          </Text>
+          <View style={styles.topRow}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Profilestatistics")}
+            >
+              <Image
+                source={require("../assets/images/epic_avatar.png")}
+                style={styles.image}
+              />
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={[MainStyles.textHeader, { fontSize: 20, marginBottom: 10 }]}
+          >
             Level {profile.level}
           </Text>
-          <View style={{ marginTop: 5, position: "relative" }}>
+          <View style={{ position: "relative" }}>
             <Progress.Bar
               progress={0.6}
-              width={barWidth}
+              width={windowWidth * 0.7}
               height={20}
               color={MainStyles.colors.bargraphColor}
             />
@@ -161,42 +135,80 @@ const Profile = ({ navigation }) => {
               {457} exp to Level {10}
             </Text>
           </View>
-          <Text style={[MainStyles.textHeader, { fontSize: 18 }]}>
-            Average performances over 7 projects
-          </Text>
-          <View style={styles.container}>
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <ProfileStatsCard
-                  title={"Professional"}
-                  score={8.2}
-                  imageSource={require("../assets/icons/professional.png")}
+
+          {/* Middle Row */}
+          <View style={styles.middleRow}>
+            <RewardsCards data={data_rewards} />
+          </View>
+
+          {/* Bottom Row */}
+          <View style={styles.bottomRow}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: 10,
+                }}
+              >
+                <Image
+                  source={require("../assets/icons/feedbacks.png")}
+                  style={{ width: 20, height: 20 }}
+                  resizeMode="contain"
                 />
-              </View>
-              <View style={styles.cell}>
-                <ProfileStatsCard
-                  // title={profile.stats?.teamwork}
-                  title={"Teamwork"}
-                  score={9.3}
-                  imageSource={require("../assets/icons/teamwork.png")}
-                />
-              </View>
+                <Text
+                  style={[
+                    MainStyles.textHeader,
+                    {
+                      fontSize: 18,
+                      paddingLeft: 15,
+                      color: "white",
+                    },
+                  ]}
+                >
+                  Feedbacks
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.row}>
-              <View style={styles.cell}>
-                <ProfileStatsCard
-                  title={"Leadership"}
-                  score={6.62}
-                  imageSource={require("../assets/icons/leadership.png")}
+
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start",
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginTop: 10,
+                }}
+              >
+                <Image
+                  source={require("../assets/icons/logout.png")}
+                  style={{ width: 20, height: 20 }}
+                  resizeMode="contain"
                 />
-              </View>
-              <View style={styles.cell}>
-                <ProfileStatsCard
-                  title={"Support"}
-                  score={7.21}
-                  imageSource={require("../assets/icons/innovation.png")}
-                />
-              </View>
+                <Text
+                  style={[
+                    MainStyles.textHeader,
+                    {
+                      fontSize: 18,
+                      paddingLeft: 15,
+                      color: "white",
+                    },
+                  ]}
+                >
+                  Logout
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -206,26 +218,39 @@ const Profile = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
+  topRow: {
     alignItems: "center",
-  },
-  row: {
-    flexDirection: "row",
-    width: windowWidth * 0.9,
-  },
-  cell: {
-    flex: 1,
-    padding: 10,
-    height: windowHeight * 0.1,
-  },
-  iconsContainer: {
-    flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 10,
   },
-  icon: {
-    marginRight: 10,
+  image: {
+    width: 180,
+    height: 180,
+    resizeMode: "contain",
+    marginTop: 5,
+  },
+  middleRow: {
+    marginTop: 10,
+    height: 150,
+  },
+  itemContainer: {
+    width: 100,
+    height: 100,
+    backgroundColor: "lightgray",
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 10,
+  },
+  itemText: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  bottomRow: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    height: 100,
+    width: 320,
   },
 });
+
 export default Profile;
