@@ -26,10 +26,8 @@ export const handleAddSuggestion = async (data) => {
   const handleAddSuggestToFirestore = async (data) => {
     console.log(data);
     const id = data.id; //"1ZkpZnl0ffqJI5BteAaC";
-    const idea = data.idea; // "new idea"
-    const user = data.user; // "Anne"
   
-    const suggest = { dislike: 0, like: 0, idea: idea, user: user };
+    const suggest = data
     const docRef = doc(db, "challenges", id);
     await updateDoc(docRef, {
       suggestions: arrayUnion(suggest),
