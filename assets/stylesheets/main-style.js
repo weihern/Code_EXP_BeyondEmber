@@ -36,7 +36,7 @@ const LoadStyles = async () => {
   return StyleSheet.create({
     headerDiv: {
       backgroundColor: mainDark,
-      justifyContent: "start",
+      justifyContent: "flex-start",
       alignItems: "center",
       width: "100%",
       paddingVertical: remToDp(3),
