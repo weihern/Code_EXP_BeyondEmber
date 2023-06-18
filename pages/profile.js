@@ -58,6 +58,7 @@ const Profile = ({ navigation }) => {
   console.log(profile);
   const rewards = ["grab", "ntuc", "capitalLand", "gojek"];
   console.log(rewards);
+
   const data = {
     labels: ["Innovation", "Teamwork", "Leadership", "Professional"],
     datasets: [
@@ -68,11 +69,8 @@ const Profile = ({ navigation }) => {
           profile.stats?.professional,
           profile.stats?.teamwork,
         ],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2, // optional
       },
     ],
-    // legend: ["Rainy Days"], // optional
   };
   const chartConfig = {
     backgroundGradientFrom: "#1E2923",
@@ -80,9 +78,16 @@ const Profile = ({ navigation }) => {
     backgroundGradientTo: "#08130D",
     backgroundGradientToOpacity: 0.5,
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false, // optional
+    strokeWidth: 2,
+    barPercentage: 1, // Set the bar width to occupy the full space
+    propsForLabels: {
+      fontSize: 7.5,
+      fontWeight: "bold",
+    },
+  };
+
+  const graphStyle = {
+    marginLeft: -80, // Adjust the negative margin as needed to move the graph to the left
   };
 
   return (
@@ -125,12 +130,17 @@ const Profile = ({ navigation }) => {
                   style={styles.icon}
                 />
               </View>
-              {/* <LineChart
+              <BarChart
                 data={data}
-                width={windowWidth / 3}
-                height={100}
+                width={windowWidth / 1.5}
+                height={220}
+                withHorizontalLabels={false}
+                // withVerticalLabels={false}
+                fromZero={true}
                 chartConfig={chartConfig}
-              /> */}
+                style={graphStyle}
+                showValuesOnTopOfBars={true}
+              />
             </View>
           </View>
           <Text style={[MainStyles.textHeader, { fontSize: 20 }]}>
