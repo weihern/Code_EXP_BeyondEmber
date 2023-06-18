@@ -39,17 +39,17 @@ const Header = ({title}) => {
             <View style={{backgroundColor:"#272A37",height:44, width:"100%"}}></View>
             <View style={MainStyles.headerDiv}>
                 { title!=='Challenge' && title!=='Profile' && title!=='Home' && title !== 'BeyondEmber'&& 
-                <TouchableOpacity onPress={handleGoBack}>
-                    <Text>Back</Text>
+                <TouchableOpacity onPress={handleGoBack} style={{backgroundColor:'#BB86FC', borderRadius:50, padding:5, width:30, height:30, alignItems:'center',justifyContent:'center'}}>
+                    <Text style={MainStyles.textHeader}>{'<'}</Text>
                 </TouchableOpacity>
                 }
                 {(title==='BeyondEmber' || title==='Avatar' || title ==='Profile')&&
                     <Icon width={37} height={40} name="home" color="#BB86FC"/>
                 }
-                {(title.includes('Challenge')) &&
+                {(title==='Challenge') &&
                     <Icon width={40} height={40} name="challenge" color="#BB86FC"/>
                 }
-                <Text style={MainStyles.header}>
+                <Text style={[MainStyles.header,{marginStart:5}]}>
                     {title.includes("Challenge")?"Challenge":title.includes("Profile")?"Profile":title}
                 </Text>
 
