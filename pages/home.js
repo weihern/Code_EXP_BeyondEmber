@@ -80,6 +80,7 @@ const HomeMain = ({ navigation }) => {
     } else{
       navigation.navigate("Home2");
     }
+  }
 
     return (
         <>
@@ -124,7 +125,6 @@ const HomeMain = ({ navigation }) => {
         </>
     );
 };
-}
 
 const Stack = createNativeStackNavigator();
 export default function Home() {
