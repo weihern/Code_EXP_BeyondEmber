@@ -1,12 +1,19 @@
 import LoadStyles from "../assets/stylesheets/main-style";
-import { View,Text } from "react-native";
+import { View,Text, Pressable,TouchableOpacity } from "react-native";
 // import Svg, { Path } from "react-native-svg";
 // import { logo, add } from "../assets/icons";
 import { Icon } from "./icons";
 import * as React from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const Header = ({title}) => {
     const [MainStyles, setStyles] = React.useState(null);
+    const navigation = useNavigation();
+    const route = useRoute();
+    title = route.params?.proj?route.params.proj:title;
+    // const currentScreen = route.state ? route.state.routes[route.state.index].name : route.name;
+    // console.log(currentScreen);
+    // title = route.name;
 
     React.useEffect(() => {
         const loadStyles = async () => {
@@ -17,24 +24,41 @@ const Header = ({title}) => {
         loadStyles();
     }, []);
 
+    function addCh(){
+        navigation.navigate("AddChallenge");
+    }
+
+    function handleGoBack(){
+        navigation.goBack();
+    }
+
     return(
     <>
        { MainStyles && 
        <View>
             <View style={{backgroundColor:"#272A37",height:44, width:"100%"}}></View>
             <View style={MainStyles.headerDiv}>
+                { title!=='Challenge' && title!=='Profile' && title!=='Home' && title !== 'BeyondEmber'&& 
+                <TouchableOpacity onPress={handleGoBack}>
+                    <Text>Back</Text>
+                </TouchableOpacity>
+                }
                 {(title==='BeyondEmber' || title==='Avatar' || title ==='Profile')&&
                     <Icon width={37} height={40} name="home" color="#BB86FC"/>
                 }
-                {(title==='Challenge') &&
+                {(title.includes('Challenge')) &&
                     <Icon width={40} height={40} name="challenge" color="#BB86FC"/>
                 }
                 <Text style={MainStyles.header}>
-                    {title}
+                    {title.includes("Challenge")?"Challenge":title.includes("Profile")?"Profile":title}
                 </Text>
+
+                
                 {
-                    (title==='Challenge') && 
+                (title==='Challenge') && 
+                <Pressable onPress={addCh}>
                     <Icon width={30} height={30} name="add" color="#FFFFFF"/>
+                </Pressable>
                 }
             </View>
         </View>

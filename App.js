@@ -20,6 +20,7 @@ import LoginScreen from './pages/login';
 import Home2 from './pages/home2';
 import PeerReview from "./pages/peer-review";
 import Profilestatistics from "./pages/profilestatistics";
+import AddChallengeScreen from "./pages/AddChallengeScreen";
 
 export default function App() {
     // const Tab = createBottomTabNavigator();
@@ -36,14 +37,48 @@ export default function App() {
       <UserProvider>
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="login" component={LoginScreen} />
-                <Stack.Screen name="HomeTabs" component={TabsNav} />
-                <Stack.Screen name="Challenge2" component={Challenge2} />
-                <Stack.Screen name="Challenge3" component={Challenge3} />
-                <Stack.Screen name="Profile" component={Profile} />
-                <Stack.Screen name="Home2" component={Home2} />
-                <Stack.Screen name="PeerReview" component={PeerReview}/>
-                <Stack.Screen name="Profilestatistics" component={Profilestatistics} />
+                <Stack.Screen name="login" component={LoginScreen} 
+                options={{ headerShown: false }}
+                />
+                <Stack.Screen name="HomeTabs" 
+                  // options={{
+                  //     header: () => <Header title="BeyondEmber" />,
+                  // }}
+                  options={{ headerShown: false }}
+                  component={TabsNav}
+                />
+                <Stack.Screen name="Challenge2" component={Challenge2} 
+                  options={{
+                    header: () => <Header title="Challenge2" />,
+                  }}
+                />
+                <Stack.Screen name="Challenge3" component={Challenge3} 
+                  options={{
+                    header: () => <Header title="Challenge3" />,
+                  }}
+                />
+                {/* <Stack.Screen name="Profile" component={Profile} 
+                options={{
+                  header: () => <Header title="Challenge3" />,
+                }}
+                /> */}
+                <Stack.Screen name="Home2" component={Home2} 
+                options={{
+                  header: () => <Header title="Home" />,
+                }}
+                />
+                <Stack.Screen name="PeerReview" component={PeerReview}
+                options={{
+                  header: () => <Header title="Peer Review" />,
+                }}/>
+                <Stack.Screen name="AddChallenge" component={AddChallengeScreen}
+                options={{
+                  header: () => <Header title="Challenge4" />,
+                }}/>
+                <Stack.Screen name="Profilestatistics" component={Profilestatistics} 
+                options={{
+                  header: () => <Header title="Profile Statistics" />,
+                }}/>
             </Stack.Navigator>
         </NavigationContainer>
       </UserProvider>
@@ -81,22 +116,31 @@ export function TabsNav() {
             >
                 <Tab.Screen
                     name="Home"
+                    // options={{
+                    //     header: () => <Header title="BeyondEmber" />,
+                    //     // The style below is not applying
+                    // }}
                     options={{
-                        header: () => <Header title="BeyondEmber" />,
-                        // The style below is not applying
+                      header: () => <Header title="BeyondEmber" />,
                     }}
                     component={Home}
                 />
                 <Tab.Screen
+                    // options={{
+                    //     header: () => <Header title="Challenge" />,
+                    // }}
                     options={{
-                        header: () => <Header title="Challenge" />,
+                      header: () => <Header title="Challenge" />,
                     }}
                     name="Challenge"
                     component={Challenge}
                 />
                 <Tab.Screen
+                    // options={{
+                    //     header: () => <Header title="Profile" />,
+                    // }}
                     options={{
-                        header: () => <Header title="Profile" />,
+                      header: () => <Header title="Profile" />,
                     }}
                     name="Profile"
                     component={Profile}
