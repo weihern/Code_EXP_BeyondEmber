@@ -18,12 +18,10 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
-
 const deviceWidth = Dimensions.get("window").width;
 const barWidth = deviceWidth * 0.7;
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-
 const Profile = ({ navigation }) => {
   const remToDp = (rem) => rem * PixelRatio.get();
 
@@ -60,7 +58,6 @@ const Profile = ({ navigation }) => {
   console.log(profile);
   const rewards = ["grab", "ntuc", "capitalLand", "gojek"];
   console.log(rewards);
-
   const data = {
     labels: ["Innovation", "Teamwork", "Leadership", "Professional"],
     datasets: [
@@ -128,12 +125,12 @@ const Profile = ({ navigation }) => {
                   style={styles.icon}
                 />
               </View>
-              <LineChart
+              {/* <LineChart
                 data={data}
                 width={windowWidth / 3}
                 height={100}
                 chartConfig={chartConfig}
-              />
+              /> */}
             </View>
           </View>
           <Text style={[MainStyles.textHeader, { fontSize: 20 }]}>
@@ -207,6 +204,7 @@ const Profile = ({ navigation }) => {
     </>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
