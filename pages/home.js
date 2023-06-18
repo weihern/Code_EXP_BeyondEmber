@@ -75,6 +75,8 @@ const HomeMain = ({ navigation }) => {
     } else if (id === "b") {
       //brian put the name of navigator screen here
       navigation.navigate("ChallengeStack1");
+    } else{
+      navigation.navigate("Home2");
     }
   }
 
@@ -127,7 +129,7 @@ export default function Home() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomeMain" component={HomeMain} />
-      <Stack.Screen name="ChallengeStack1" component={ChallengeStack1} />
+      {/* <Stack.Screen name="ChallengeStack1" component={ChallengeStack1} /> */}
       {/* <Stack.Screen name="Challenge7" component={Challenge3} /> */}
       {/* Wei Hern & Brian to add your Page's component! then change the navigation in change function (line 25-31)*/}
     </Stack.Navigator>

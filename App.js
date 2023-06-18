@@ -16,8 +16,10 @@ import * as React from "react";
 
 import {Icon} from "./components/icons";
 import { PixelRatio } from "react-native";
-import {Challenge, Challenge2, Challenge3} from './pages/challenge';
+import { Challenge, Challenge2, Challenge3 } from './pages/challenge';
 import LoginScreen from './pages/login';
+import Home2 from './pages/home2';
+import PeerReview from "./pages/peer-review";
 
 
 export default function App() {
@@ -34,10 +36,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="login" component={LoginScreen}/>
+        {/* <Stack.Screen name="login" component={LoginScreen}/> */}
         <Stack.Screen name="HomeTabs" component={TabsNav} />
         <Stack.Screen name="Challenge2" component={Challenge2} />
         <Stack.Screen name="Challenge3" component={Challenge3} />
+        <Stack.Screen name="Home2" component={Home2} />
+        <Stack.Screen name="PeerReview" component={PeerReview}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
