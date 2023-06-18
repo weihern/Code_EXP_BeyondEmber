@@ -30,6 +30,7 @@ import CustomButton from '../components/button.js'
 import LoadStyles from "../assets/stylesheets/main-style.js";
 import {Icon} from "../components/icons.js"
 
+import { handleAddSuggestion } from "../components/AddSuggestion";
 import { useEffect, useState } from "react";
 // import { KeyboardAvoidingView } from "react-native-web";
 
@@ -131,19 +132,6 @@ export function Challenge2({ route, navigation }) {
     //navigation.navigate("Challenge2", { data }); // Pass the data object as a parameter
   };
 
-  const handleEditNote = async (noteId) => {
-    try {
-      const noteRef = doc(db, "notes", noteId);
-      await updateDoc(noteRef, {
-        // Update the desired fields with new values
-        title: "Updated Titledfdf",
-      });
-      console.log("Note updated successfully");
-    } catch (error) {
-      console.error("Error updating note:", error);
-    }
-  };
-
   return (
     <View style={MainStyles?.container}>
       {MainStyles && notes && 
@@ -160,7 +148,8 @@ export function Challenge2({ route, navigation }) {
 
 export function Challenge3({navigation, route}) {
   const {data} = route.params;
-  const suggestions = data.suggestions;
+  // const suggestions = data.suggestions;
+  const [suggestions, setSuggestions] = useState(data.suggestions)
   const title = data.title;
   const id = data.id;
   const user = data.user? data.user : "Anne";
@@ -202,7 +191,14 @@ export function Challenge3({navigation, route}) {
   }
 
   const submitInput = () => {
-    console.log(inputText);
+    const input = {
+      "id": data.id,
+      "idea": inputText,
+      "user": "Anne",
+      "dislike": 0, "like": 0
+    }
+    setSuggestions(suggestions => [...suggestions, input]);
+    handleAddSuggestion(input);
   }
 
   useEffect(() => {
