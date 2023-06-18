@@ -25,7 +25,7 @@ const HomeMain = ({ navigation }) => {
     const [profile, setProfile] = useState([]);
 
     // get user email from token
-    const email = "test@hotmail.com";
+    const email = username;
     useEffect(() => {
         const unsubscribe = onSnapshot(
             query(collection(db, "users"), where("__name__", "==", email)),
