@@ -8,6 +8,103 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const remToDp = (rem) => rem * PixelRatio.get();
 
+const CustomDiv = ({MainStyles, item}) => {
+  const [value1, setValue1] = React.useState("1");
+  const [value2, setValue2] = React.useState("1");
+  const [value3, setValue3] = React.useState("1");
+  const [value4, setValue4] = React.useState("1");
+
+  return(
+    <View style={[MainStyles.containerPrimary,{width:'100%'}]}>
+      <View style={[MainStyles.rowDiv]}>
+        <Text style={[MainStyles.textHeader,{fontSize:18, width:'80%'}]}>{item}</Text>
+      </View>
+      <View style={[MainStyles.colDiv]}>
+        <View style={[MainStyles.rowDiv]}>
+            <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Innovative</Text>
+            <RNPickerSelect
+                selectedValue={value1}
+                onValueChange={(itemValue) => setValue1(itemValue)}
+                placeholder={{label:'0', value:'0', color:'#000000'}}
+                style={{inputIOS:{backgroundColor:'#FFFFFF', width:20, color:'#000000', borderRadius: 5, textAlign:'center'}}}
+                items={[
+                    { label: '1', value: '1' },
+                    { label: '2', value: '2' },
+                    { label: '3', value: '3' },
+                    { label: '4', value: '1' },
+                    { label: '5', value: '2' },
+                    { label: '6', value: '3' },
+                    { label: '7', value: '1' },
+                    { label: '8', value: '2' },
+                    { label: '9', value: '3' },
+                    { label: '10', value: '3' },
+                  ]}
+            />
+            <Text style={[MainStyles.textPrimary, {marginEnd:5, marginLeft:30}]}>Team Work</Text>
+            <RNPickerSelect
+                selectedValue={value2}
+                onValueChange={(itemValue) => setValue2(itemValue)}
+                placeholder={{label:'0', value:'0', color:'#000000'}}
+                style={{inputIOS:{backgroundColor:'#FFFFFF', width:20, color:'#000000', borderRadius: 5, textAlign:'center'}}}
+                items={[
+                    { label: '1', value: '1' },
+                    { label: '2', value: '2' },
+                    { label: '3', value: '3' },
+                    { label: '4', value: '1' },
+                    { label: '5', value: '2' },
+                    { label: '6', value: '3' },
+                    { label: '7', value: '1' },
+                    { label: '8', value: '2' },
+                    { label: '9', value: '3' },
+                    { label: '10', value: '3' },
+                  ]}
+            />
+        </View>
+        <View style={[MainStyles.rowDiv]}>
+        <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Team Work</Text>
+        <RNPickerSelect
+                selectedValue={value3}
+                onValueChange={(itemValue) => setValue3(itemValue)}
+                placeholder={{label:'0', value:'0', color:'#000000'}}
+                style={{inputIOS:{backgroundColor:'#FFFFFF', width:20, color:'#000000', borderRadius: 5, textAlign:'center'}}}
+                items={[
+                    { label: '1', value: '1' },
+                    { label: '2', value: '2' },
+                    { label: '3', value: '3' },
+                    { label: '4', value: '1' },
+                    { label: '5', value: '2' },
+                    { label: '6', value: '3' },
+                    { label: '7', value: '1' },
+                    { label: '8', value: '2' },
+                    { label: '9', value: '3' },
+                    { label: '10', value: '3' },
+                  ]}
+            />
+            <Text style={[MainStyles.textPrimary, {marginEnd:5, marginLeft:30}]}>Team Work</Text>
+            <RNPickerSelect
+                selectedValue={value4}
+                onValueChange={(itemValue) => setValue4(itemValue)}
+                placeholder={{label:'0', value:'0', color:'#000000'}}
+                style={{inputIOS:{backgroundColor:'#FFFFFF', width:20, color:'#000000', borderRadius: 5, textAlign:'center'}}}
+                items={[
+                    { label: '1', value: '1' },
+                    { label: '2', value: '2' },
+                    { label: '3', value: '3' },
+                    { label: '4', value: '1' },
+                    { label: '5', value: '2' },
+                    { label: '6', value: '3' },
+                    { label: '7', value: '1' },
+                    { label: '8', value: '2' },
+                    { label: '9', value: '3' },
+                    { label: '10', value: '3' },
+                  ]}
+            />
+        </View>
+      </View>
+    </View>
+  );
+}
+
 const PeerReview = ({navigation, route}) => {
     const [MainStyles, setStyles] = React.useState(null);
     const {proj} = route.params;
@@ -42,124 +139,28 @@ const PeerReview = ({navigation, route}) => {
         // console.log("c,",currentVal);
     }
 
-    React.useEffect(() => {
-        console.log("s",selectedValue);
-      }, [selectedValue]);
-
     function submit(){
         navigation.navigate("Home2");
     }
 
-    const rowRenderer = ({ item, index }) => (
+    function rowRenderer ({ item, index }){
+      return(
         <>
-        <View style={MainStyles.containerPrimary}>
-          <View style={[MainStyles.rowDiv]}>
-            <Text style={[MainStyles.textHeader,{fontSize:18, width:'80%'}]}>{item}</Text>
-            {/* <View style={[item.difficulty==='Hard'? MainStyles.hardDiv : item.difficulty==='Medium'? MainStyles.moderateDiv: MainStyles.easyDiv, {borderRadius:50, padding:5, position:'absolute', right:remToDp(3), top:remToDp(3)}]}>
-              <Text style={{fontSize: 14, color: "#FFFFFF", flex: 1}}>{item.difficulty}</Text>
-            </View> */}
-          </View>
-          <View style={[MainStyles.colDiv]}>
-            <View style={[MainStyles.rowDiv]}>
-                <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Innovative</Text>
-                <RNPickerSelect
-                    selectedValue={selectedValue[item]?selectedValue[item]["skill1"]?selectedValue[item]["skill1"]:'1':'1'}
-                    onValueChange={(itemValue) => updateValues(itemValue, item, "skill1")}
-                    style={{borderRadius: 5}}
-                    items={[
-                        { label: '1', value: '1' },
-                        { label: '2', value: '2' },
-                        { label: '3', value: '3' },
-                        { label: '4', value: '1' },
-                        { label: '5', value: '2' },
-                        { label: '6', value: '3' },
-                        { label: '7', value: '1' },
-                        { label: '8', value: '2' },
-                        { label: '9', value: '3' },
-                        { label: '10', value: '3' },
-                      ]}
-                />
-                    {/* <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                    <Picker.Item label="7" value="7" />
-                    <Picker.Item label="8" value="8" />
-                    <Picker.Item label="9" value="9" />
-                    <Picker.Item label="10" value="10" /> */}
-                {/* </RNPickerSelect> */}
-                <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Team Work</Text>
-                <RNPickerSelect
-                    selectedValue={selectedValue[item]?selectedValue[item]["skill2"]?selectedValue[item]["skill2"]:'1':'1'}
-                    onValueChange={(itemValue) => updateValues(itemValue, item, "skill2")}
-                    style={{borderRadius: 5}}
-                    items={[
-                        { label: '1', value: '1' },
-                        { label: '2', value: '2' },
-                        { label: '3', value: '3' },
-                        { label: '4', value: '1' },
-                        { label: '5', value: '2' },
-                        { label: '6', value: '3' },
-                        { label: '7', value: '1' },
-                        { label: '8', value: '2' },
-                        { label: '9', value: '3' },
-                        { label: '10', value: '3' },
-                      ]}
-                />
-            </View>
-            <View style={[MainStyles.rowDiv]}>
-                {/* <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Innovative</Text>
-                <Picker
-                    selectedValue={(selectedValue[item])?(selectedValue[item]["skill3"])?selectedValue[item]["skill3"]:1:1}
-                    onValueChange={(itemValue) => updateValues(itemValue, item, "skill3")}
-                    style={{borderRadius: 5}}
-                >
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                    <Picker.Item label="7" value="7" />
-                    <Picker.Item label="8" value="8" />
-                    <Picker.Item label="9" value="9" />
-                    <Picker.Item label="10" value="10" />
-                </Picker>
-                <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Team Work</Text>
-                <Picker
-                    selectedValue={selectedValue[item]?selectedValue[item]["skill4"]?selectedValue[item]["skill4"]:1:1}
-                    onValueChange={(itemValue) => updateValues(itemValue, item, "skill4")}
-                    style={{borderRadius: 5}}
-                >
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                    <Picker.Item label="7" value="7" />
-                    <Picker.Item label="8" value="8" />
-                    <Picker.Item label="9" value="9" />
-                    <Picker.Item label="10" value="10" />
-                </Picker> */}
-            </View>
-          </View>
-        </View>
+        <CustomDiv item={item} MainStyles={MainStyles}/>
         </>
       );
+    }
 
     return (
         <View style={[MainStyles?.container,{flex:1}]}>
             {MainStyles &&
             <>
-            <View style={{ alignSelf:'center', flex:1}}>
+            <View style={{ alignSelf:'center', flex:1, width:'90%'}}>
                 <FlatList
                     data={projectsDetail[proj]}
                     keyExtractor={(item, index) => index}
                     renderItem={rowRenderer}
-                    style={{width:'90%'}}
+                    style={{width:'100%'}}
                     showsVerticalScrollIndicator={false}
                 ></FlatList>
             </View>
