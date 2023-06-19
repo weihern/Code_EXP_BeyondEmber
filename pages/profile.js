@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Animated,
 } from "react-native";
 import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../components/firebase";
@@ -71,6 +72,27 @@ const Profile = ({ navigation }) => {
   }, []);
 
   const [profile, setProfile] = useState([]);
+
+  const iconPosition = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Define the animation sequence
+    const moveAnimation = Animated.sequence([
+      Animated.timing(iconPosition, {
+        toValue: 12, // Distance to move the icon
+        duration: 450, // Duration of each movement
+        useNativeDriver: true, // Enable native driver for better performance
+      }),
+      Animated.timing(iconPosition, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+    ]);
+
+    // Start the animation
+    Animated.loop(moveAnimation).start();
+  }, [iconPosition]);
   // get user email from token
   const email = "test@hotmail.com";
   useEffect(() => {
@@ -103,6 +125,17 @@ const Profile = ({ navigation }) => {
               <Image
                 source={require("../assets/images/epic_avatar.png")}
                 style={styles.image}
+              />
+              {/* <Image
+                source={require("../assets/icons/arrow.png")}
+                style={styles.smallIcon}
+              /> */}
+              <Animated.Image
+                source={require("../assets/icons/arrow.png")}
+                style={[
+                  styles.smallIcon,
+                  { transform: [{ translateX: iconPosition }] },
+                ]}
               />
             </TouchableOpacity>
           </View>
@@ -151,8 +184,8 @@ const Profile = ({ navigation }) => {
                 justifyContent: "flex-start",
               }}
             >
-              <TouchableOpacity 
-                onPress={() => navigation.navigate("Feedback",profile)}
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Feedback", profile)}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -221,6 +254,7 @@ const Profile = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   topRow: {
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -229,6 +263,7 @@ const styles = StyleSheet.create({
     height: 180,
     resizeMode: "contain",
     marginTop: 5,
+    marginRight: 10,
   },
   middleRow: {
     marginTop: 10,
@@ -252,6 +287,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     height: 100,
     width: 320,
+  },
+  smallIcon: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
   },
 });
 
