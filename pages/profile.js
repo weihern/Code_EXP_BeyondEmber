@@ -170,6 +170,10 @@ const Profile = ({ navigation }) => {
             </Text>
           </View>
 
+          <Text style={[MainStyles.textHeader, { paddingTop: 10 }]}>
+            Rewards
+          </Text>
+
           {/* Middle Row */}
           <View style={styles.middleRow}>
             <RewardsCards data={data_rewards} />
