@@ -6,6 +6,7 @@ import { auth } from "../components/firebase";
 import { UserContext } from "../components/UserContext";
 import LoadStyles from "../assets/stylesheets/main-style";
 import { CurrentRenderContext } from "@react-navigation/native";
+import {Icon} from '../components/icons'
 
 const LoginScreen = ({ navigation }) => {
     const UsernameContext = createContext("");
@@ -38,16 +39,7 @@ const LoginScreen = ({ navigation }) => {
         <>
             {MainStyles && (
                 <View style={[MainStyles.bg, MainStyles.container]}>
-                    {/* <Text style={MainStyles.textPrimary}>Open up App.js to start working on your app!</Text> */}
-                    {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
-                     */}
-                    {/* <CustomButton type="action" text="Challenge"/>
-        <CustomButton
-        text="Submit"
-        divStyle={MainStyles.btnPrimary}
-        textStyle={MainStyles.btnPrimaryText} 
-        onPress={change}
-        /> */}
+                    <Icon style={{ margin: 30 }} name="beyondember" width={50} height={50} color="#BB86FC" />
                     <Text style={styles.text}>
                         BeyondEmber
                     </Text>
