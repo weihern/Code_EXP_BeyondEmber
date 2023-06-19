@@ -39,8 +39,8 @@ const Header = ({title}) => {
             <View style={{backgroundColor:"#272A37",height:44, width:"100%"}}></View>
             <View style={MainStyles.headerDiv}>
                 { title!=='Challenge' && title!=='Profile' && title!=='Home' && title !== 'BeyondEmber'&& 
-                <TouchableOpacity onPress={handleGoBack} style={{backgroundColor:'#BB86FC', borderRadius:50, padding:5, width:30, height:30, alignItems:'center',justifyContent:'center'}}>
-                    <Text style={MainStyles.textHeader}>{'<'}</Text>
+                <TouchableOpacity onPress={handleGoBack} style={{backgroundColor:'#BB86FC', borderRadius:50, width:30, height:30, alignItems:'center',justifyContent:'center'}}>
+                    <Text style={[MainStyles.textHeader,{textAlign:'center',justifyContent:'center'}]}>{'<'}</Text>
                 </TouchableOpacity>
                 }
                 {(title==='BeyondEmber' || title==='Avatar' || title ==='Profile')&&

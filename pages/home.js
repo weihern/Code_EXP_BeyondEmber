@@ -1,32 +1,43 @@
-import LoadStyles from "../assets/stylesheets/main-style";
-import CustomButton from "../components/button";
-import { Button, StyleSheet, Text, View } from "react-native";
-import * as React from "react";
-// import ChallengeStack1 from "./junwei";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState, useContext } from "react";
+import * as React from 'react';
+import LoadStyles from '../assets/stylesheets/main-style';
+import { FlatList, Pressable, View, Text, Image } from 'react-native';
+import {
+    updateDoc,
+    doc,
+    collection,
+    getDocs,
+    onSnapshot,
+    query,
+    terminate,
+    where
+  } from "firebase/firestore";
+import { db } from "../components/firebase";
 import { UserContext } from "../components/UserContext";
 
-import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
-import { db } from "../components/firebase";
-
-const HomeMain = ({ navigation }) => {
-    const { username } = useContext(UserContext);
+const Home = ({navigation}) => {
+    const { username } = React.useContext(UserContext);
     const [MainStyles, setStyles] = React.useState(null);
-    console.log(username);
-    React.useEffect(() => {
-        const loadStyles = async () => {
-            const loadedStyles = await LoadStyles();
-            setStyles(loadedStyles);
-        };
+    const [profile, setProfile] = React.useState([]);
+    const [challenges, setChallenges] = React.useState(null);
 
-        loadStyles();
+    const projects = [
+        "SGX Marketing Project",
+        "DBS Data Analytic Project",
+        "Ember Mobile App Project",
+      ];
+
+    React.useEffect(() => {
+      const loadStyles = async () => {
+        const loadedStyles = await LoadStyles();
+        setStyles(loadedStyles);
+      };
+  
+      loadStyles();
     }, []);
-    const [profile, setProfile] = useState([]);
 
     // get user email from token
     const email = username;
-    useEffect(() => {
+    React.useEffect(() => {
         const unsubscribe = onSnapshot(
             query(collection(db, "users"), where("__name__", "==", email)),
             (snapshot) => {
@@ -43,99 +54,110 @@ const HomeMain = ({ navigation }) => {
         return () => unsubscribe();
     }, []);
 
-    const [notes, setNotes] = useState([]);
-    useEffect(() => {
+    React.useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, "challenges"), (snapshot) => {
-            const documents = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            // console.log(documents);
-            setNotes(documents);
+          const documents = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          console.log(documents);
+          setChallenges(documents);
         });
         return () => unsubscribe();
-    }, []);
+      }, []);
 
-    console.log(notes);
-    console.log(profile);
-    const projects = [
-        "SGX Marketing Project",
-        "DBS Data Analytic Project",
-        "Ember Mobile App Project",
-    ];
-    console.log(projects);
-
-  
-  function change(id) {
-    console.log("change page");
-    navigation.navigate("Profile");
-    if (id === "jw") {
-      navigation.navigate("ChallengeStack1");
-    } else if (id === "wh") {
-      //weihern put the name of navigator screen here
-      navigation.navigate("ChallengeStack1");
-    } else if (id === "b") {
-      //brian put the name of navigator screen here
-      navigation.navigate("ChallengeStack1");
-    } else{
-      navigation.navigate("Home2");
+    function selectProject(proj){
+        console.log(proj);
+        navigation.navigate("PeerReview",{ proj });
     }
-  }
 
-    return (
+    function selectChallenge(data){
+        navigation.navigate("Challenge3",{ data });
+    }
+
+    function goToCh(){
+        navigation.navigate("Challenge");
+    }
+
+    function divRenderer({item, index}){
+        return(
+            <Pressable style={[MainStyles.containerPrimary, {backgroundColor:'#5200FF', flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectProject(item)}>
+                <Text style={[MainStyles.textHeader, {fontSize:18, maxWidth:120}]}>{item}</Text>
+                <Text style={[MainStyles.textPrimary, {fontSize:16}]}>Do Peer Review Now!</Text>
+            </Pressable>
+        );
+    }
+
+    function challengesRenderer({item, index}){
+        const bgColor = item.difficulty==="Hard"?MainStyles.hardDiv:item.difficulty==="Medium"?MainStyles.moderateDiv:MainStyles.easyDiv;
+
+        return(
+            <Pressable style={[MainStyles.containerPrimary, bgColor ,{flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectChallenge(item)}>
+                <Text numberOfLines={3} ellipsizeMode="tail" style={[MainStyles.textHeader, {fontSize:18, maxWidth:120, overflow:'hidden'}]}>{item.title}</Text>
+                <Text style={[MainStyles.textPrimary, {fontSize:16}]}>{index+2} Days Left</Text>
+            </Pressable>
+        );
+    }
+
+    return(
         <>
-            {MainStyles && (
-                <View style={[MainStyles.bg, MainStyles.container]}>
-                    {/* <Text style={MainStyles.textPrimary}>Open up App.js to start working on your app!</Text> */}
-                    {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
-                     */}
-                    {/* <CustomButton type="action" text="Challenge"/>
-            <CustomButton
-            text="Submit"
-            divStyle={MainStyles.btnPrimary}
-            textStyle={MainStyles.btnPrimaryText} 
-            onPress={change}
-            /> */}
-                    <Button
-                        title="Jun Wei"
-                        onPress={(e) => {
-                            change("jw");
-                        }}
-                    />
-                    <Button
-                        title="Wei Hern"
-                        onPress={(e) => {
-                            change("wh");
-                        }}
-                    />
-                    <Button
-                        title="Brian"
-                        onPress={(e) => {
-                            change("b");
-                        }}
-                    />
-                    <Button
-                        title="Hui Ru"
-                        onPress={(e) => {
-                            change("hr");
-                        }}
-                    />
+        {MainStyles && 
+        <View style={[MainStyles.container, {justifyContent:'flex-start', alignItems:'center', paddingVertical:20}]}>
+            <View style={{alignItems:'center', width:'100%', marginBottom: 5, height:190}}>
+                <View style={{backgroundColor:'#EDE6FB',borderRadius:10, width:'90%', padding: 10, minHeight:150}}>
+                    <Text style={[MainStyles.textHeader, {color: '#E03232', fontSize:18}]}>Hurry Up!</Text>
+                    <Text style={[MainStyles.textHeader,{marginBottom:'auto', color: '#E03232', fontSize:18}]}>50 more EXP to level 10</Text>
+                    <Text style={[MainStyles.textPrimary,{alignSelf:'flex-end', color:'black'}]}>current EXP <Text style={{fontSize:30}}> 543</Text><Text>/1000</Text></Text>
+                    <Pressable style={{alignSelf:'flex-end'}} onPress={goToCh}>
+                        <Text style={[MainStyles.textHeader,{alignSelf:'flex-end', color:'#5073EE', fontSize:20}]}>Earn more now {'>'}</Text>
+                    </Pressable> 
                 </View>
-            )}
+                <Image
+                    source={require("../assets/images/epic_avatar.png")}
+                    style={{ width: 100, height: 150, position: 'absolute', bottom: 0, left: 0, top: 'auto', justifyContent:'flex-end', alignItems:'flex-end', display:'flex'}}
+                    resizeMode="contain"
+                />
+            </View>
+            {/* show all PE */}
+            <View style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%'}}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[MainStyles.header, { fontSize: 24}]}>
+                    Be a good teammate!
+                    </Text>
+                </View>
+                <View style={{minHeight:150, padding:5, maxWidth:'90%'}}>
+                    <FlatList 
+                        data={projects}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={divRenderer}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+                    ></FlatList>
+                </View>
+            </View>
+            {/* show challenges due soon */}
+            <View style={{ display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', width:'100%', maxHeight:220, marginTop:10}}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[MainStyles.header, { fontSize: 24}]}>
+                    Challenges Due Soon!
+                    </Text>
+                </View>
+                <View style={{minHeight:150, padding:5, maxWidth:'90%'}}>
+                    {challenges &&
+                    <FlatList 
+                        data={challenges.slice(0, 4)}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={challengesRenderer}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+                    ></FlatList>}
+                </View>
+            </View>
+        </View>}
         </>
     );
-};
-
-const Stack = createNativeStackNavigator();
-export default function Home() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeMain" component={HomeMain} />
-      {/* <Stack.Screen name="ChallengeStack1" component={ChallengeStack1} /> */}
-      {/* <Stack.Screen name="Challenge7" component={Challenge3} /> */}
-      {/* Wei Hern & Brian to add your Page's component! then change the navigation in change function (line 25-31)*/}
-    </Stack.Navigator>
-  );
 }
 
-// export default Home;
+export default Home;

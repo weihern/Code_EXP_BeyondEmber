@@ -233,7 +233,7 @@ export function Challenge3({navigation, route}) {
   return(
     <>
     {MainStyles && 
-      <View style={[MainStyles.container, {justifyContent:'start'}, inputFocus && {height:'62%'}]}>
+      <View style={[MainStyles.container, {justifyContent:'start'}, inputFocus && {height:'58%'}]}>
         <View style={[MainStyles.containerPrimary,{width:'90%', paddingHorizontal:remToDp(3), paddingTop:remToDp(3)}]}>
           <Text style={[MainStyles.textHeader,{color:'#BDBDBD',fontSize:16, marginBottom:remToDp(2)}]}>{user} Posted</Text>
           <Text style={[MainStyles.textHeader,{fontSize:20}]}>{title}</Text>
@@ -250,7 +250,7 @@ export function Challenge3({navigation, route}) {
           showsVerticalScrollIndicator={false}
         ></FlatList>
         
-          <View style={[MainStyles.containerPrimary,{backgroundColor:'#F5F5F5',bottom: 10, position:'absolute', width:'90%', padding:10 }, MainStyles.shadowDiv]}>
+          <View style={[MainStyles.containerPrimary,{backgroundColor:'#F5F5F5',bottom: 20, position:'absolute', width:'90%', padding:10 }, MainStyles.shadowDiv]}>
             <TextInput
               value={inputText}
               onChangeText={handleChangeText}
@@ -266,18 +266,8 @@ export function Challenge3({navigation, route}) {
             textStyle={{color:"#FFFFFF", fontSize:14, alignSelf:'flex-start'}} 
             text="Submit"/>
           </View>
+
       </View>}
     </>
   );
 }
-
-const Stack = createNativeStackNavigator();
-// export default function ChallengeStack() {
-//   return (
-//     <Stack.Navigator screenOptions={{ headerShown: false }}>
-//       <Stack.Screen name="Challenge1" component={Challenge} />
-//       <Stack.Screen name="Challenge2" component={Challenge2} />
-//       <Stack.Screen name="Challenge3" component={Challenge3} />
-//     </Stack.Navigator>
-//   );
-// }

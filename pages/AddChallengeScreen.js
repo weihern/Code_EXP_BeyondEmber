@@ -180,11 +180,18 @@ const AddChallengeScreen = () => {
               onCancel={hideDatePicker}
               textColor="black"
             />
-            <CustomButton onPress={handleSubmit} 
+            {/* <CustomButton onPress={handleSubmit} 
             divStyle={{backgroundColor:"#E03232",borderRadius:20, justifyContent:'center', alignItems:'center', alignSelf:'center'}}
             textStyle={{color:"#FFFFFF", fontSize:30, alignSelf:'center'}} 
             text="Challenge"
-            style={{padding:10,margin:10}}/>
+            style={{padding:10,margin:10, paddingHorizontal:20}}/> */}
+            <CustomButton onPress={handleSubmit} 
+            // divStyle={{backgroundColor:"#E03232",borderRadius:20, justifyContent:'center', alignItems:'center', alignSelf:'center'}}
+            // textStyle={{color:"#FFFFFF", fontSize:30, alignSelf:'center'}} 
+            text="Challenge"
+            type="action"
+            // style={{padding:10,margin:10, paddingHorizontal:20}}
+            />
           </View>
         </TouchableWithoutFeedback>
       )}

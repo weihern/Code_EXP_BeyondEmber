@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import { createStackNavigator } from '@react-navigation/stack';
 import Profile from "./pages/profile";
 // import ChallengeStack from "./pages/challenge.js";
-import Home from "./pages/home";
+// import Home from "./pages/home";
 
 import Header from "./components/header";
 import { auth } from "./components/firebase";
@@ -17,7 +17,7 @@ import { Icon } from "./components/icons";
 import { PixelRatio } from "react-native";
 import { Challenge, Challenge2, Challenge3 } from './pages/challenge';
 import LoginScreen from './pages/login';
-import Home2 from './pages/home2';
+import Home from './pages/home';
 import PeerReview from "./pages/peer-review";
 import Profilestatistics from "./pages/profilestatistics";
 import AddChallengeScreen from "./pages/AddChallengeScreen";
@@ -63,11 +63,11 @@ export default function App() {
                   header: () => <Header title="Challenge3" />,
                 }}
                 /> */}
-                <Stack.Screen name="Home2" component={Home2} 
+                {/* <Stack.Screen name="Home2" component={Home2} 
                 options={{
                   header: () => <Header title="Home" />,
                 }}
-                />
+                /> */}
                 <Stack.Screen name="PeerReview" component={PeerReview}
                 options={{
                   header: () => <Header title="Peer Review" />,

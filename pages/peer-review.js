@@ -166,7 +166,7 @@ const PeerReview = ({navigation, route}) => {
             <View style={{height:40, marginBottom:20, alignSelf:'flex-end', marginEnd:'10%'}}>
                 <CustomButton onPress={submit}
                 divStyle={{backgroundColor:"#BB86FC",borderRadius:10, padding:remToDp(2), marginTop:remToDp(2), flex: 1, justifyContent:'center', alignItems:'center', alignSelf:'flex-end'}}
-                textStyle={{color:"#FFFFFF", fontSize:16, alignSelf:'flex-start'}} 
+                textStyle={{color:"#FFFFFF", fontSize:20, alignSelf:'flex-start'}} 
                 text="Submit"/>
             </View>
             </>
