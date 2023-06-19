@@ -21,6 +21,7 @@ import Home2 from './pages/home2';
 import PeerReview from "./pages/peer-review";
 import Profilestatistics from "./pages/profilestatistics";
 import AddChallengeScreen from "./pages/AddChallengeScreen";
+import Feedback from "./pages/feedback";
 
 export default function App() {
     // const Tab = createBottomTabNavigator();
@@ -78,6 +79,10 @@ export default function App() {
                 <Stack.Screen name="Profilestatistics" component={Profilestatistics} 
                 options={{
                   header: () => <Header title="Profile Statistics" />,
+                }}/>
+                <Stack.Screen name="Feedback" component={Feedback} 
+                options={{
+                  header: () => <Header title="Feedbacks" />,
                 }}/>
             </Stack.Navigator>
         </NavigationContainer>

@@ -13,6 +13,7 @@ import LoadStyles from "../assets/stylesheets/main-style";
 import * as Progress from "react-native-progress";
 import { Dimensions } from "react-native";
 import RewardsCards from "../components/RewardsCards";
+import feedbacks from "./feedback";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -150,7 +151,8 @@ const Profile = ({ navigation }) => {
                 justifyContent: "flex-start",
               }}
             >
-              <TouchableOpacity
+              <TouchableOpacity 
+                onPress={() => navigation.navigate("Feedback",profile)}
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
