@@ -18,8 +18,10 @@ export const handleAddSuggestion = async (data) => {
     try {
       await handleAddSuggestToFirestore(data);
       console.log("Document added to Firestore");
+      return true;
     } catch (error) {
       console.error("Error adding document to Firestore:", error);
+      return false;
     }
   };
   

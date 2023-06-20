@@ -23,6 +23,7 @@ import Profilestatistics from "./pages/profilestatistics";
 import AddChallengeScreen from "./pages/AddChallengeScreen";
 import Feedback from "./pages/feedback";
 import Win from "./pages/win";
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 export default function App() {
   // const Tab = createBottomTabNavigator();
@@ -36,85 +37,86 @@ export default function App() {
   // }
 
   return (
-    <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="login"
-            component={LoginScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Win"
-            component={Win}
-            options={{
-              headerShown: false,
-            }}
-          />
-
-          <Stack.Screen
-            name="HomeTabs"
-            // options={{
-            //     header: () => <Header title="BeyondEmber" />,
-            // }}
-            options={{ headerShown: false }}
-            component={TabsNav}
-          />
-          <Stack.Screen
-            name="Challenge2"
-            component={Challenge2}
-            options={{
-              header: () => <Header title="Challenge2" />,
-            }}
-          />
-          <Stack.Screen
-            name="Challenge3"
-            component={Challenge3}
-            options={{
-              header: () => <Header title="Challenge3" />,
-            }}
-          />
-          {/* <Stack.Screen name="Profile" component={Profile} 
-                options={{
-                  header: () => <Header title="Challenge3" />,
-                }}
-                /> */}
-          {/* <Stack.Screen name="Home2" component={Home2} 
-                options={{
-                  header: () => <Header title="Home" />,
-                }}
-                /> */}
-          <Stack.Screen
-            name="PeerReview"
-            component={PeerReview}
-            options={{
-              header: () => <Header title="Peer Review" />,
-            }}
-          />
-          <Stack.Screen
-            name="AddChallenge"
-            component={AddChallengeScreen}
-            options={{
-              header: () => <Header title="Challenge4" />,
-            }}
-          />
-          <Stack.Screen
-            name="Profilestatistics"
-            component={Profilestatistics}
-            options={{
-              header: () => <Header title="Profile Statistics" />,
-            }}
-          />
-          <Stack.Screen
-            name="Feedback"
-            component={Feedback}
-            options={{
-              header: () => <Header title="Feedbacks" />,
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </UserProvider>
+    <RootSiblingParent>
+      <UserProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="login"
+              component={LoginScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Win"
+              component={Win}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="HomeTabs"
+              // options={{
+              //     header: () => <Header title="BeyondEmber" />,
+              // }}
+              options={{ headerShown: false }}
+              component={TabsNav}
+            />
+            <Stack.Screen
+              name="Challenge2"
+              component={Challenge2}
+              options={{
+                header: () => <Header title="Challenge2" />,
+              }}
+            />
+            <Stack.Screen
+              name="Challenge3"
+              component={Challenge3}
+              options={{
+                header: () => <Header title="Challenge3" />,
+              }}
+            />
+            {/* <Stack.Screen name="Profile" component={Profile} 
+                  options={{
+                    header: () => <Header title="Challenge3" />,
+                  }}
+                  /> */}
+            {/* <Stack.Screen name="Home2" component={Home2} 
+                  options={{
+                    header: () => <Header title="Home" />,
+                  }}
+                  /> */}
+            <Stack.Screen
+              name="PeerReview"
+              component={PeerReview}
+              options={{
+                header: () => <Header title="Peer Review" />,
+              }}
+            />
+            <Stack.Screen
+              name="AddChallenge"
+              component={AddChallengeScreen}
+              options={{
+                header: () => <Header title="Challenge4" />,
+              }}
+            />
+            <Stack.Screen
+              name="Profilestatistics"
+              component={Profilestatistics}
+              options={{
+                header: () => <Header title="Profile Statistics" />,
+              }}
+            />
+            <Stack.Screen
+              name="Feedback"
+              component={Feedback}
+              options={{
+                header: () => <Header title="Feedbacks" />,
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserProvider>
+    </RootSiblingParent>
   );
 }
 

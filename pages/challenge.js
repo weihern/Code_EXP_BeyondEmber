@@ -32,6 +32,8 @@ import {Icon} from "../components/icons.js"
 
 import { handleAddSuggestion } from "../components/AddSuggestion";
 import { useEffect, useState } from "react";
+import Toast from 'react-native-root-toast';
+
 // import { KeyboardAvoidingView } from "react-native-web";
 
 const remToDp = (rem) => rem * PixelRatio.get();
@@ -190,7 +192,7 @@ export function Challenge3({navigation, route}) {
     setInputText(input);
   }
 
-  const submitInput = () => {
+  const submitInput = async() => {
     const input = {
       "id": data.id,
       "idea": inputText,
@@ -198,7 +200,30 @@ export function Challenge3({navigation, route}) {
       "dislike": 0, "like": 0
     }
     setSuggestions(suggestions => [...suggestions, input]);
-    handleAddSuggestion(input);
+    const result = await handleAddSuggestion(input);
+    if(result){
+      let toast = Toast.show('Suggestion Added Successfully', {
+        duration: Toast.durations.LONG,
+        backgroundColor: '#BB86FC', // Set the background color here
+        textColor: 'white',
+        fontFamily: 'righteous'
+      });
+
+      setTimeout(function hideToast() {
+        Toast.hide(toast);
+      }, 2000);
+    }else{
+      let toast = Toast.show('Failed in Adding Suggestion', {
+        duration: Toast.durations.LONG,
+        backgroundColor: '#BB86FC', // Set the background color here
+        textColor: 'white',
+        fontFamily: 'righteous'
+      });
+
+      setTimeout(function hideToast() {
+        Toast.hide(toast);
+      }, 2000);
+    }
   }
 
   useEffect(() => {

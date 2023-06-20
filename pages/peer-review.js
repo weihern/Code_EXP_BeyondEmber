@@ -4,6 +4,7 @@ import { FlatList, Pressable, View, Text, PixelRatio } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
 import CustomButton from '../components/button';
 import RNPickerSelect from 'react-native-picker-select';
+import Toast from 'react-native-root-toast';
 
 
 const remToDp = (rem) => rem * PixelRatio.get();
@@ -139,8 +140,20 @@ const PeerReview = ({navigation, route}) => {
         // console.log("c,",currentVal);
     }
 
-    function submit(){
-        navigation.navigate("Home2");
+    async function submit(){
+      // const result = await handleAddSuggestion(input);
+      let toast = Toast.show('Suggestions Added Successfully', {
+        duration: Toast.durations.LONG,
+        backgroundColor: 'red', // Set the background color here
+        textColor: 'white',
+        fontFamily: 'righteous'
+      });
+
+      setTimeout(function hideToast() {
+        Toast.hide(toast);
+        navigation.navigate("Home");
+      }, 2000);
+      
     }
 
     function rowRenderer ({ item, index }){

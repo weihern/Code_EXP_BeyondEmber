@@ -22,7 +22,7 @@ const textGrey = "#BDBDBD";
 
 const remToDp = (rem) => rem * PixelRatio.get();
 
-const loadFonts = async () => {
+export const loadFonts = async () => {
   await Font.loadAsync({
     righteous: require("../fonts/Righteous/Righteous-Regular.ttf"),
     "alegraya sans reg": require("../fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf"),
