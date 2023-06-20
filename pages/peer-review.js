@@ -142,7 +142,7 @@ const PeerReview = ({navigation, route}) => {
 
     async function submit(){
       // const result = await handleAddSuggestion(input);
-      let toast = Toast.show('Suggestions Added Successfully', {
+      let toast = Toast.show('Peer Review Submitted Successfully', {
         duration: Toast.durations.LONG,
         backgroundColor: 'red', // Set the background color here
         textColor: 'white',
