@@ -126,9 +126,10 @@ const AddChallengeScreen = ({navigation}) => {
               setOpen={setOpen}
               setValue={setValue}
               setItems={setCategories}
-              style={[styles.dropdown,{zIndex:1005}]}
+              style={[styles.dropdown]}
               textStyle={MainStyles.textPrimary}
-              dropDownContainerStyle={{ backgroundColor: "#323644" }}
+              containerStyle={[{zIndex:9999}]}
+              dropDownContainerStyle={{ backgroundColor: "#323644"}}
             />
 
             <DropDownPicker
