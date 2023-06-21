@@ -18,7 +18,7 @@ import { UserContext } from "../components/UserContext";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-const Win = async ({ navigation }) => {
+const Win = ({ navigation }) => {
   const { username } = useContext(UserContext);
 
   console.log(username, "usernammeeee");
