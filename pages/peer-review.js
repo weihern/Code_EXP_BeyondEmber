@@ -22,7 +22,9 @@ const CustomDiv = ({MainStyles, item}) => {
       </View>
       <View style={[MainStyles.colDiv]}>
         <View style={[MainStyles.rowDiv]}>
-            <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Innovative</Text>
+          <View style={[MainStyles.rowDiv, {width:'50%', margin:0, paddingVertical:0}]}>
+
+          <Text style={[MainStyles.textPrimary, {marginEnd:5, width:'50%'}]}>Professional</Text>
             <RNPickerSelect
                 selectedValue={value1}
                 onValueChange={(itemValue) => setValue1(itemValue)}
@@ -41,7 +43,9 @@ const CustomDiv = ({MainStyles, item}) => {
                     { label: '10', value: '3' },
                   ]}
             />
-            <Text style={[MainStyles.textPrimary, {marginEnd:5, marginLeft:30}]}>Team Work</Text>
+          </View>
+          <View style={[MainStyles.rowDiv, {width:'50%', margin:0, paddingVertical:0}]}>
+          <Text style={[MainStyles.textPrimary, {marginEnd:5, width:'50%' }]}>Leadership</Text>
             <RNPickerSelect
                 selectedValue={value2}
                 onValueChange={(itemValue) => setValue2(itemValue)}
@@ -60,10 +64,12 @@ const CustomDiv = ({MainStyles, item}) => {
                     { label: '10', value: '3' },
                   ]}
             />
+          </View>
         </View>
         <View style={[MainStyles.rowDiv]}>
-        <Text style={[MainStyles.textPrimary, {marginEnd:5}]}>Team Work</Text>
-        <RNPickerSelect
+        <View style={[MainStyles.rowDiv, {width:'50%', margin:0, paddingVertical:0}]}>
+          <Text style={[MainStyles.textPrimary, {marginEnd:5, width:'50%'}]}>Team Work</Text>
+          <RNPickerSelect
                 selectedValue={value3}
                 onValueChange={(itemValue) => setValue3(itemValue)}
                 placeholder={{label:'0', value:'0', color:'#000000'}}
@@ -81,7 +87,9 @@ const CustomDiv = ({MainStyles, item}) => {
                     { label: '10', value: '3' },
                   ]}
             />
-            <Text style={[MainStyles.textPrimary, {marginEnd:5, marginLeft:30}]}>Team Work</Text>
+          </View>
+          <View style={[MainStyles.rowDiv, {width:'50%', margin:0, paddingVertical:0}]}>
+            <Text style={[MainStyles.textPrimary, {marginEnd:5, width:'50%'}]}>Innovative</Text>
             <RNPickerSelect
                 selectedValue={value4}
                 onValueChange={(itemValue) => setValue4(itemValue)}
@@ -100,6 +108,7 @@ const CustomDiv = ({MainStyles, item}) => {
                     { label: '10', value: '3' },
                   ]}
             />
+          </View>
         </View>
       </View>
     </View>

@@ -17,10 +17,11 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { FontAwesome } from '@expo/vector-icons';
 import { handleAddChallenge } from "../components/AddChallenge";
+import Toast from "react-native-root-toast";
 
 const remToDp = (rem) => rem * PixelRatio.get();
 
-const AddChallengeScreen = () => {
+const AddChallengeScreen = ({navigation}) => {
   // import styling
   const [MainStyles, setStyles] = useState(null);
   useEffect(() => {
@@ -72,7 +73,7 @@ const AddChallengeScreen = () => {
     setShowDatePicker(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Handle form submission here
     const formattedDate = endDate.toLocaleDateString('en-GB', {
       day: '2-digit',
@@ -86,7 +87,20 @@ const AddChallengeScreen = () => {
       endDate: formattedDate
     }
     console.log(data);
-    handleAddChallenge(data);
+    const result = await handleAddChallenge(data);
+    if(result){
+      let toast = Toast.show('New Challenge Added Successfully', {
+        duration: Toast.durations.LONG,
+        backgroundColor: '#BB86FC', // Set the background color here
+        textColor: 'white',
+        fontFamily: 'righteous'
+      });
+
+      setTimeout(function hideToast() {
+        Toast.hide(toast);
+        navigation.goBack();
+      }, 2000);
+    }
   };
 
   return (
@@ -99,9 +113,8 @@ const AddChallengeScreen = () => {
               { flexDirection: "column", padding: 10 },
             ]}
           >
-            <Text style={[MainStyles.textHeader, { alignItems: "flex-end" }]}>
-              {" "}
-              Challenge Type:{" "}
+            <Text style={[MainStyles.textHeader, { alignItems: "flex-end", marginBottom:5 }]}>
+              Challenge Type
             </Text>
 
             <DropDownPicker
@@ -138,7 +151,7 @@ const AddChallengeScreen = () => {
                 { marginTop: 20, textAlign: "left" },
               ]}
             >
-              Write a New Challenge:
+              Write a New Challenge
             </Text>
 
             <KeyboardAvoidingView
@@ -159,14 +172,14 @@ const AddChallengeScreen = () => {
               />
             </KeyboardAvoidingView>
 
-            <View style={[MainStyles.containerPrimary,{flexDirection:"column",padding:10}]}>
+            <View style={[MainStyles.containerPrimary,{flexDirection:"row",padding:10}]}>
               <TextInput
                 style={[MainStyles.textPrimary,{textAlign:"left"}]}
                 editable={false}
                 placeholder="End Date"
                 value={endDate.toDateString()}
               />
-              <TouchableOpacity onPress={showDatepicker} style={{alignItems:"flex-end"}}
+              <TouchableOpacity onPress={showDatepicker} style={{alignItems:"flex-end", justifyContent:'center', marginLeft:'auto'}}
               >
                 <FontAwesome name="calendar" size={24} color="white"/>
               </TouchableOpacity>
@@ -180,17 +193,9 @@ const AddChallengeScreen = () => {
               onCancel={hideDatePicker}
               textColor="black"
             />
-            {/* <CustomButton onPress={handleSubmit} 
-            divStyle={{backgroundColor:"#E03232",borderRadius:20, justifyContent:'center', alignItems:'center', alignSelf:'center'}}
-            textStyle={{color:"#FFFFFF", fontSize:30, alignSelf:'center'}} 
-            text="Challenge"
-            style={{padding:10,margin:10, paddingHorizontal:20}}/> */}
             <CustomButton onPress={handleSubmit} 
-            // divStyle={{backgroundColor:"#E03232",borderRadius:20, justifyContent:'center', alignItems:'center', alignSelf:'center'}}
-            // textStyle={{color:"#FFFFFF", fontSize:30, alignSelf:'center'}} 
             text="Challenge"
             type="action"
-            // style={{padding:10,margin:10, paddingHorizontal:20}}
             />
           </View>
         </TouchableWithoutFeedback>

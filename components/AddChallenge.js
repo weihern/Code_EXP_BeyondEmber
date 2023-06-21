@@ -24,7 +24,9 @@ export const handleAddChallenge = async (data) => {
     await addDoc(collectionRef, data);
 
     console.log("New challenge added to Firestore");
+    return true;
   } catch (error) {
     console.error("Error adding challenge to Firestore:", error);
+    return false;
   }
 };

@@ -58,7 +58,6 @@ const Profilestatistics = ({ navigation }) => {
     );
     return () => unsubscribe();
   }, []);
-  console.log(profile, "profillllleeee");
   const data = {
     labels: ["Innovation", "Teamwork", "Leadership", "Professional"],
     datasets: [
@@ -92,7 +91,7 @@ const Profilestatistics = ({ navigation }) => {
     <>
       {MainStyles && (
         <View style={[MainStyles.bg, MainStyles.container]}>
-          <Text style={MainStyles.textHeader}>{profile.name}</Text>
+          <Text style={[MainStyles.textHeader, {fontSize:28}]}>{profile.name}</Text>
           {/* <View style={MainStyles.btnAction}><Button title="Challenge" onPress={() => {}}/></View>
            */}
           <View style={{ flexDirection: "row" }}>

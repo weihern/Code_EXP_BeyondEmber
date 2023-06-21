@@ -271,7 +271,7 @@ export function Challenge3({navigation, route}) {
           data={suggestions}
           keyExtractor={(item, index) => index.toString()}
           renderItem={rowRenderer}
-          style={{width:'90%', marginBottom:80}}
+          style={{width:'90%', marginBottom:125}}
           showsVerticalScrollIndicator={false}
         ></FlatList>
         

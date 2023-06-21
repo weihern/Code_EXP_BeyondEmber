@@ -84,16 +84,16 @@ const Feedback = ({ navigation, route }) => {
   const rowRenderer = ({ item, index }) => (
     <View style={[MainStyles.containerPrimary]}>
       <View style={[MainStyles.rowDiv]}>
-        <Text style={[MainStyles.textPrimary, { fontSize: 14, width: "80%", fontStyle: 'italic'}]}>" {item.comment} "</Text>
+        <Text style={[MainStyles.textPrimary, { fontSize: 14, fontStyle: 'italic'}]}>" {item.comment} "</Text>
       </View>
       <View style={[MainStyles.colDiv]}>
         <View style={[MainStyles.rowDiv, {paddingVertical: 0}]}>
-          <Text style={[styles.statsDiv,{color:"#FFA184"}]}>Professional + {item.stats.professional}</Text>
-          <Text style={[styles.statsDiv,{color:"#FDFF84"}]}>Leadership + {item.stats.leadership}</Text>
+          <Text style={[styles.statsDiv,{color:"#FFA184", width:'50%'}]}>Professional + {item.stats.professional}</Text>
+          <Text style={[styles.statsDiv,{color:"#FDFF84", width:'50%'}]}>Leadership + {item.stats.leadership}</Text>
         </View>
         <View style={[MainStyles.rowDiv,{paddingVertical: 0}]}>
-          <Text style={[styles.statsDiv,{color:"#FFA184"}]}>Teamwork + {item.stats.teamwork}</Text>
-          <Text style={[styles.statsDiv,{color:"#FDFF84"}]}>Innovative + {item.stats.innovative}</Text>
+          <Text style={[styles.statsDiv,{color:"#FFA184", width:'50%'}]}>Teamwork + {item.stats.teamwork}</Text>
+          <Text style={[styles.statsDiv,{color:"#FDFF84", width:'50%'}]}>Innovative + {item.stats.innovative}</Text>
         </View>
       </View>
     </View>

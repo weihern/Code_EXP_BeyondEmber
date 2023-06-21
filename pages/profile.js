@@ -15,6 +15,7 @@ import * as Progress from "react-native-progress";
 import { Dimensions } from "react-native";
 import RewardsCards from "../components/RewardsCards";
 import feedbacks from "./feedback";
+import { UserContext } from "../components/UserContext";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -61,6 +62,7 @@ const data_rewards = [
 
 const Profile = ({ navigation }) => {
   const [MainStyles, setStyles] = useState(null);
+  const { updateUser } = React.useContext(UserContext);
 
   useEffect(() => {
     const loadStyles = async () => {
@@ -74,6 +76,11 @@ const Profile = ({ navigation }) => {
   const [profile, setProfile] = useState([]);
 
   const iconPosition = useRef(new Animated.Value(0)).current;
+  
+  function logout(){
+    updateUser("");
+    navigation.navigate("login");
+  }
 
   useEffect(() => {
     // Define the animation sequence
@@ -229,6 +236,8 @@ const Profile = ({ navigation }) => {
                   alignItems: "center",
                   marginTop: 10,
                 }}
+
+                onPress={logout}
               >
                 <Image
                   source={require("../assets/icons/logout.png")}
