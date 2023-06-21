@@ -42,11 +42,13 @@ const testdata = [
     stats: {
       teamwork: 6,
       leadership: 8,
+      professional: 10,
       innovative: 6,
     },
     comments:
       "[Project: Ember] Your strong leadership skills, ability to inspire others, and strategic decision-making have played a pivotal role in guiding the team towards success.",
   },
+  
 ];
 
 const Feedback = ({ navigation, route }) => {

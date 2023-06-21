@@ -106,7 +106,7 @@ const Home = ({navigation}) => {
             <View style={{alignItems:'center', width:'100%', marginBottom: 5, height:190}}>
                 <View style={{backgroundColor:'#EDE6FB',borderRadius:10, width:'90%', padding: 10, minHeight:150}}>
                     <Text style={[MainStyles.textHeader, {color: '#E03232', fontSize:18}]}>Hurry Up!</Text>
-                    <Text style={[MainStyles.textHeader,{marginBottom:'auto', color: '#E03232', fontSize:18}]}>50 more EXP to level 10</Text>
+                    <Text style={[MainStyles.textHeader,{marginBottom:'auto', color: '#E03232', fontSize:18}]}>467 more EXP to level 10</Text>
                     <Text style={[MainStyles.textPrimary,{alignSelf:'flex-end', color:'black'}]}>current EXP <Text style={{fontSize:30}}> 543</Text><Text>/1000</Text></Text>
                     <Pressable style={{alignSelf:'flex-end'}} onPress={goToCh}>
                         <Text style={[MainStyles.textHeader,{alignSelf:'flex-end', color:'#5073EE', fontSize:20}]}>Earn more now {'>'}</Text>

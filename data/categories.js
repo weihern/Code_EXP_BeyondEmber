@@ -8,10 +8,12 @@ export default function categoryAsObjects() {
   }
   
   const cats = [
-    "Improvements",
-    "Innovation",
     "Marketing",
-    "Risk",
+    "Innovation",
+    "Improvements",
     "Sales",
-
+    "Finance",
+    "Human Resource",
+    "Coding",
+    "Architecture",
   ];
