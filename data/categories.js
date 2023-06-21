@@ -10,18 +10,8 @@ export default function categoryAsObjects() {
   const cats = [
     "Improvements",
     "Innovation",
+    "Marketing",
     "Risk",
     "Sales",
-    "Marketing",
-    "CatB",
-    "CatC",
-    "CatD",
-    "CatA",
-    "CatB",
-    "CatC",
-    "CatD",
-    "CatA",
-    "CatB",
-    "CatC",
-    "CatD",
+
   ];
