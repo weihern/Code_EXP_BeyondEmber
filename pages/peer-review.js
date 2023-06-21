@@ -1,6 +1,6 @@
 import * as React from 'react';
 import LoadStyles from '../assets/stylesheets/main-style';
-import { FlatList, Pressable, View, Text, PixelRatio } from 'react-native';
+import { FlatList, Pressable, View, Text, PixelRatio, TextInput } from 'react-native';
 // import { Picker } from '@react-native-picker/picker';
 import CustomButton from '../components/button';
 import RNPickerSelect from 'react-native-picker-select';
@@ -14,6 +14,7 @@ const CustomDiv = ({MainStyles, item}) => {
   const [value2, setValue2] = React.useState("1");
   const [value3, setValue3] = React.useState("1");
   const [value4, setValue4] = React.useState("1");
+  const [inputText, setInputText] = React.useState("");
 
   return(
     <View style={[MainStyles.containerPrimary,{width:'100%'}]}>
@@ -109,6 +110,16 @@ const CustomDiv = ({MainStyles, item}) => {
                   ]}
             />
           </View>
+        </View>
+        <View style={MainStyles.rowDiv}>
+          <TextInput
+              value={inputText}
+              onChangeText={(input)=>{setInputText(input)}}
+              placeholder={`Any feedback to ${item}?`}
+              placeholderTextColor="#BDBDBD"
+              style={[MainStyles.textPrimary,{ color: "#F5F5F5", backgroundColor:'#414657', width:'100%', borderRadius:5,padding:5}]}
+              //borderRadius:5
+            />
         </View>
       </View>
     </View>
