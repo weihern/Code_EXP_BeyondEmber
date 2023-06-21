@@ -86,15 +86,15 @@ const Header = ({ title }) => {
             </Text>
 
             {title === "Challenge" && (
-              <Pressable onPress={addCh}>
+              <TouchableOpacity onPress={addCh}>
                 <Icon width={30} height={30} name="add" color="#FFFFFF" />
-              </Pressable>
+              </TouchableOpacity>
             )}
 
             {title === "BeyondEmber" && (
-              <Pressable onPress={showWin}>
+              <TouchableOpacity onPress={showWin}>
                 <Icon name="win" color="#FFFFFF" />
-              </Pressable>
+              </TouchableOpacity>
             )}
           </View>
         </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import LoadStyles from "../assets/stylesheets/main-style";
-import { Pressable, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 
 export default function CustomButton({onPress, type, divStyle, textStyle, text}){
     const [bgStyle, setBgStyle] = React.useState(divStyle); 
@@ -25,9 +25,9 @@ export default function CustomButton({onPress, type, divStyle, textStyle, text})
     
     return(
         <>
-        {MainStyles && <Pressable style={[MainStyles.btnDf, bgStyle]} onPress={onPress}>
+        {MainStyles && <TouchableOpacity style={[MainStyles.btnDf, bgStyle]} onPress={onPress}>
             <Text style={[MainStyles.btnDfText, innerStyle]}>{text}</Text>
-        </Pressable>}
+        </TouchableOpacity>}
         </>
     )
 }

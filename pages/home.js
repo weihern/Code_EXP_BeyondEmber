@@ -1,6 +1,6 @@
 import * as React from 'react';
 import LoadStyles from '../assets/stylesheets/main-style';
-import { FlatList, Pressable, View, Text, Image } from 'react-native';
+import { FlatList, TouchableOpacity, View, Text, Image } from 'react-native';
 import {
     updateDoc,
     doc,
@@ -81,10 +81,10 @@ const Home = ({navigation}) => {
 
     function divRenderer({item, index}){
         return(
-            <Pressable style={[MainStyles.containerPrimary, {backgroundColor:'#5200FF', flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectProject(item)}>
+            <TouchableOpacity style={[MainStyles.containerPrimary, {backgroundColor:'#5200FF', flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectProject(item)}>
                 <Text style={[MainStyles.textHeader, {fontSize:18, maxWidth:120}]}>{item}</Text>
                 <Text style={[MainStyles.textPrimary, {fontSize:16}]}>Do Peer Review Now!</Text>
-            </Pressable>
+            </TouchableOpacity>
         );
     }
 
@@ -92,10 +92,10 @@ const Home = ({navigation}) => {
         const bgColor = item.difficulty==="Hard"?MainStyles.hardDiv:item.difficulty==="Medium"?MainStyles.moderateDiv:MainStyles.easyDiv;
 
         return(
-            <Pressable style={[MainStyles.containerPrimary, bgColor ,{flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectChallenge(item)}>
+            <TouchableOpacity style={[MainStyles.containerPrimary, bgColor ,{flex:1, padding:5, justifyContent:'space-between'}]} onPress={() => selectChallenge(item)}>
                 <Text numberOfLines={3} ellipsizeMode="tail" style={[MainStyles.textHeader, {fontSize:18, maxWidth:120, overflow:'hidden'}]}>{item.title}</Text>
                 <Text style={[MainStyles.textPrimary, {fontSize:16}]}>{index+2} Days Left</Text>
-            </Pressable>
+            </TouchableOpacity>
         );
     }
 
@@ -108,9 +108,9 @@ const Home = ({navigation}) => {
                     <Text style={[MainStyles.textHeader, {color: '#E03232', fontSize:18}]}>Hurry Up!</Text>
                     <Text style={[MainStyles.textHeader,{marginBottom:'auto', color: '#E03232', fontSize:18}]}>457 more EXP to level 10</Text>
                     <Text style={[MainStyles.textPrimary,{alignSelf:'flex-end', color:'black'}]}>current EXP <Text style={{fontSize:30}}> 543</Text><Text>/1000</Text></Text>
-                    <Pressable style={{alignSelf:'flex-end'}} onPress={goToCh}>
+                    <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={goToCh}>
                         <Text style={[MainStyles.textHeader,{alignSelf:'flex-end', color:'#5073EE', fontSize:20}]}>Earn more now {'>'}</Text>
-                    </Pressable> 
+                    </TouchableOpacity> 
                 </View>
                 <Image
                     source={require("../assets/images/epic_avatar.png")}

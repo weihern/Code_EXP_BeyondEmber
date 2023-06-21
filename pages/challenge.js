@@ -7,12 +7,11 @@ import {
   ScrollView,
   FlatList,
   Button,
-  Pressable,
+  TouchableOpacity,
   PixelRatio,
   TextInput,
   Keyboard,
   KeyboardAvoidingView,
-  TouchableOpacity,
 } from "react-native";
 import categoryAsObjects from "../data/categories.js";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -46,11 +45,11 @@ export function Challenge({ navigation }) {
   }, []);
 
   const rowRenderer = ({ item }) => (
-    <Pressable style={MainStyles.containerPrimary} onPress={() => chosenCat(item.cat)}>
+    <TouchableOpacity style={MainStyles.containerPrimary} onPress={() => chosenCat(item.cat)}>
       <View style={MainStyles.rowDiv}>
         <Text style={MainStyles.textHeader}>{item.cat}</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 
   const chosenCat = (cat) => {
@@ -110,7 +109,7 @@ export function Challenge2({ route, navigation }) {
   const rowRenderer = ({ item }) => (
     <>
       {item.category === cat && (
-        <Pressable style={MainStyles.containerPrimary} onPress={() => chosenCat(item)}>
+        <TouchableOpacity style={MainStyles.containerPrimary} onPress={() => chosenCat(item)}>
           <View style={[MainStyles.rowDiv]}>
             <Text style={[MainStyles.textHeader, { fontSize: 18, width: "80%" }]}>{item.title}</Text>
             <View
@@ -129,7 +128,7 @@ export function Challenge2({ route, navigation }) {
           <View style={[MainStyles.rowDiv]}>
             <Text style={[MainStyles.textPrimary, { fontSize: 16, color: "#BDBDBB" }]}>27/09/2024</Text>
           </View>
-        </Pressable>
+        </TouchableOpacity>
       )}
     </>
   );
